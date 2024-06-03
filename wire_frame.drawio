@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-06-03T12:49:57.124Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36" etag="Lka4oarWpJfWUeGTZqKi" version="24.4.13" type="github" pages="5">
+<mxfile host="app.diagrams.net" modified="2024-06-03T13:35:28.636Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36" etag="P65KT1H280csIxDpFDKI" version="24.4.13" type="github" pages="6">
   <diagram name="投稿一覧" id="f1b7ffb7-ca1e-a977-7cf5-a751b3c06c05">
     <mxGraphModel dx="1502" dy="556" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1654" background="none" math="0" shadow="0">
       <root>
@@ -201,7 +201,7 @@
         <mxCell id="99BR9VFu0WFYGdmXDq_5-4" value="コメントする" style="rounded=0;whiteSpace=wrap;html=1;" parent="39P1uzcSHCTFRIGBNehX-1" vertex="1">
           <mxGeometry x="1040" y="560" width="100" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="99BR9VFu0WFYGdmXDq_5-5" value="text_area" style="rounded=0;whiteSpace=wrap;html=1;" parent="39P1uzcSHCTFRIGBNehX-1" vertex="1">
+        <mxCell id="99BR9VFu0WFYGdmXDq_5-5" value="コメント入力欄" style="rounded=0;whiteSpace=wrap;html=1;" parent="39P1uzcSHCTFRIGBNehX-1" vertex="1">
           <mxGeometry x="320" y="560" width="720" height="50" as="geometry" />
         </mxCell>
         <mxCell id="99BR9VFu0WFYGdmXDq_5-6" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="39P1uzcSHCTFRIGBNehX-1" vertex="1">
@@ -434,7 +434,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="g4SFX68Del0n_CZe_1-B" name="検索">
-    <mxGraphModel dx="1502" dy="556" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1654" math="0" shadow="0">
+    <mxGraphModel dx="1050" dy="522" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1654" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -451,7 +451,120 @@
           <mxGeometry x="90" y="470" width="150" height="30" as="geometry" />
         </mxCell>
         <mxCell id="l6Wv__3i6KvV31I1ynZp-1" value="" style="verticalLabelPosition=bottom;verticalAlign=top;strokeWidth=1;shape=mxgraph.mockup.graphics.iconGrid;strokeColor=#CCCCCC;gridSize=1,1;" vertex="1" parent="1">
-          <mxGeometry x="320" y="10" width="810" height="500" as="geometry" />
+          <mxGeometry x="320" y="10" width="810" height="590" as="geometry" />
+        </mxCell>
+        <mxCell id="rWCRwpGp3SIsLEBIrUER-1" value="検索キーワード入力欄" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="540" y="40" width="410" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="u63qz63McFZPfJSy0d0W-1" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;目的&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="120" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="u63qz63McFZPfJSy0d0W-3" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;宿泊&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="750" y="120" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="u63qz63McFZPfJSy0d0W-4" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;観光&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="660" y="120" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="u63qz63McFZPfJSy0d0W-5" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;食事&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#cce5ff;strokeColor=#36393d;" vertex="1" parent="1">
+          <mxGeometry x="570" y="120" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="u63qz63McFZPfJSy0d0W-8" value="&lt;font style=&quot;font-size: 12px;&quot;&gt;⇩絞り込み条件条件&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="320" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="u63qz63McFZPfJSy0d0W-11" value="&lt;font style=&quot;font-size: 12px;&quot;&gt;⇨条件ジャンル1&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="350" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="u63qz63McFZPfJSy0d0W-14" value="&lt;font style=&quot;font-size: 12px;&quot;&gt;⇩条件ジャンル2&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="380" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="u63qz63McFZPfJSy0d0W-15" value="&lt;font style=&quot;font-size: 12px;&quot;&gt;⇨条件ジャンル3&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="470" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="u63qz63McFZPfJSy0d0W-18" value="　　□条件1　　☑条件2　　□条件3　　☑条件4　　□条件5　　□条件6　　□条件7　　□条件8　　&lt;div&gt;　　□条件9&lt;span style=&quot;color: rgba(0, 0, 0, 0); font-family: monospace; font-size: 0px; text-wrap: nowrap; background-color: initial;&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22%26lt%3Bfont%20style%3D%26quot%3Bfont-size%3A%2016px%3B%26quot%3B%26gt%3B%E7%9B%AE%E7%9A%84%26lt%3B%2Ffont%26gt%3B%22%20style%3D%22rounded%3D0%3BwhiteSpace%3Dwrap%3Bhtml%3D1%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22420%22%20y%3D%22130%22%20width%3D%2290%22%20height%3D%2240%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="480" y="410" width="530" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="u63qz63McFZPfJSy0d0W-19" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;カテゴリー&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="190" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="u63qz63McFZPfJSy0d0W-20" value="　　□カテゴリー1　　☑カテゴリー2　　□カテゴリー3　　□カテゴリー4　　□カテゴリー5　　　　&lt;div&gt;　　□カテゴリー6&lt;span style=&quot;color: rgba(0, 0, 0, 0); font-family: monospace; font-size: 0px; text-wrap: nowrap; background-color: initial;&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22%26lt%3Bfont%20style%3D%26quot%3Bfont-size%3A%2016px%3B%26quot%3B%26gt%3B%E7%9B%AE%E7%9A%84%26lt%3B%2Ffont%26gt%3B%22%20style%3D%22rounded%3D0%3BwhiteSpace%3Dwrap%3Bhtml%3D1%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22420%22%20y%3D%22130%22%20width%3D%2290%22%20height%3D%2240%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="480" y="230" width="530" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="u63qz63McFZPfJSy0d0W-21" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;検索&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="692.5" y="530" width="105" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="u63qz63McFZPfJSy0d0W-22" value="リセット" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1030" y="30" width="80" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="検索条件一覧" id="MLZIIGHGX3UVxYIgVkS4">
+    <mxGraphModel dx="1050" dy="522" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1654" math="0" shadow="0">
+      <root>
+        <mxCell id="kJWoyGNlrdrAZJe1wo12-0" />
+        <mxCell id="kJWoyGNlrdrAZJe1wo12-1" parent="kJWoyGNlrdrAZJe1wo12-0" />
+        <mxCell id="kJWoyGNlrdrAZJe1wo12-2" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="kJWoyGNlrdrAZJe1wo12-1">
+          <mxGeometry x="50" y="10" width="230" height="500" as="geometry" />
+        </mxCell>
+        <mxCell id="kJWoyGNlrdrAZJe1wo12-3" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;とりぷら！&lt;/font&gt;&lt;div style=&quot;font-size: 20px;&quot;&gt;&lt;font style=&quot;font-size: 20px;&quot;&gt;-Trip Planning-&lt;/font&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="kJWoyGNlrdrAZJe1wo12-1">
+          <mxGeometry x="70" y="20" width="190" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="kJWoyGNlrdrAZJe1wo12-4" value="&lt;font style=&quot;font-size: 26px;&quot;&gt;HOME&lt;/font&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;スケジュール&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;div style=&quot;font-size: 26px;&quot;&gt;&lt;font style=&quot;font-size: 26px;&quot;&gt;タイムライン&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 26px;&quot;&gt;&lt;font style=&quot;font-size: 26px;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 26px;&quot;&gt;&lt;font style=&quot;font-size: 26px;&quot;&gt;検索&lt;/font&gt;&lt;/div&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 26px;&quot;&gt;&lt;font style=&quot;font-size: 26px;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 26px;&quot;&gt;&lt;font style=&quot;font-size: 26px;&quot;&gt;投稿&lt;/font&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=26;" vertex="1" parent="kJWoyGNlrdrAZJe1wo12-1">
+          <mxGeometry x="65" y="110" width="200" height="315" as="geometry" />
+        </mxCell>
+        <mxCell id="kJWoyGNlrdrAZJe1wo12-5" value="ログアウト" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="kJWoyGNlrdrAZJe1wo12-1">
+          <mxGeometry x="90" y="470" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="kJWoyGNlrdrAZJe1wo12-6" value="" style="verticalLabelPosition=bottom;verticalAlign=top;strokeWidth=1;shape=mxgraph.mockup.graphics.iconGrid;strokeColor=#CCCCCC;gridSize=1,1;" vertex="1" parent="kJWoyGNlrdrAZJe1wo12-1">
+          <mxGeometry x="320" y="10" width="810" height="590" as="geometry" />
+        </mxCell>
+        <mxCell id="kJWoyGNlrdrAZJe1wo12-8" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;目的&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="kJWoyGNlrdrAZJe1wo12-1">
+          <mxGeometry x="440" y="120" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="kJWoyGNlrdrAZJe1wo12-9" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;宿泊&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="kJWoyGNlrdrAZJe1wo12-1">
+          <mxGeometry x="750" y="120" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="kJWoyGNlrdrAZJe1wo12-10" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;観光&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="kJWoyGNlrdrAZJe1wo12-1">
+          <mxGeometry x="660" y="120" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="kJWoyGNlrdrAZJe1wo12-11" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;食事&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#cce5ff;strokeColor=#36393d;" vertex="1" parent="kJWoyGNlrdrAZJe1wo12-1">
+          <mxGeometry x="570" y="120" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="kJWoyGNlrdrAZJe1wo12-12" value="&lt;font style=&quot;font-size: 12px;&quot;&gt;⇩絞り込み条件条件&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="kJWoyGNlrdrAZJe1wo12-1">
+          <mxGeometry x="440" y="320" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="kJWoyGNlrdrAZJe1wo12-13" value="&lt;font style=&quot;font-size: 12px;&quot;&gt;⇨条件ジャンル1　編集&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="kJWoyGNlrdrAZJe1wo12-1">
+          <mxGeometry x="440" y="350" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="kJWoyGNlrdrAZJe1wo12-14" value="&lt;font style=&quot;font-size: 12px;&quot;&gt;⇩条件ジャンル2　編集&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="kJWoyGNlrdrAZJe1wo12-1">
+          <mxGeometry x="440" y="380" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="kJWoyGNlrdrAZJe1wo12-15" value="&lt;font style=&quot;font-size: 12px;&quot;&gt;⇨条件ジャンル3　編集&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="kJWoyGNlrdrAZJe1wo12-1">
+          <mxGeometry x="440" y="470" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="kJWoyGNlrdrAZJe1wo12-16" value="　　□条件1　　☑条件2　　□条件3　　☑条件4　　□条件5　　□条件6　　□条件7　　□条件8　　&lt;div&gt;　　□条件9&lt;span style=&quot;color: rgba(0, 0, 0, 0); font-family: monospace; font-size: 0px; text-wrap: nowrap; background-color: initial;&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22%26lt%3Bfont%20style%3D%26quot%3Bfont-size%3A%2016px%3B%26quot%3B%26gt%3B%E7%9B%AE%E7%9A%84%26lt%3B%2Ffont%26gt%3B%22%20style%3D%22rounded%3D0%3BwhiteSpace%3Dwrap%3Bhtml%3D1%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22420%22%20y%3D%22130%22%20width%3D%2290%22%20height%3D%2240%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="kJWoyGNlrdrAZJe1wo12-1">
+          <mxGeometry x="480" y="410" width="530" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="kJWoyGNlrdrAZJe1wo12-17" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;カテゴリー&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="kJWoyGNlrdrAZJe1wo12-1">
+          <mxGeometry x="440" y="190" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="kJWoyGNlrdrAZJe1wo12-18" value="　　□カテゴリー1　　☑カテゴリー2　　□カテゴリー3　　□カテゴリー4　　□カテゴリー5　　　　&lt;div&gt;　　□カテゴリー6&lt;span style=&quot;color: rgba(0, 0, 0, 0); font-family: monospace; font-size: 0px; text-wrap: nowrap; background-color: initial;&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22%26lt%3Bfont%20style%3D%26quot%3Bfont-size%3A%2016px%3B%26quot%3B%26gt%3B%E7%9B%AE%E7%9A%84%26lt%3B%2Ffont%26gt%3B%22%20style%3D%22rounded%3D0%3BwhiteSpace%3Dwrap%3Bhtml%3D1%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22420%22%20y%3D%22130%22%20width%3D%2290%22%20height%3D%2240%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="kJWoyGNlrdrAZJe1wo12-1">
+          <mxGeometry x="480" y="230" width="530" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="kJWoyGNlrdrAZJe1wo12-19" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;検索&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="kJWoyGNlrdrAZJe1wo12-1">
+          <mxGeometry x="692.5" y="530" width="105" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="kJWoyGNlrdrAZJe1wo12-20" value="リセット" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="kJWoyGNlrdrAZJe1wo12-1">
+          <mxGeometry x="1030" y="30" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="AouThR4AoaEPOmNqE0cZ-1" value="カテゴリーの作成" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="kJWoyGNlrdrAZJe1wo12-1">
+          <mxGeometry x="655" y="50" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="AouThR4AoaEPOmNqE0cZ-3" value="条件ジャンルの作成" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="kJWoyGNlrdrAZJe1wo12-1">
+          <mxGeometry x="455" y="50" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="AouThR4AoaEPOmNqE0cZ-4" value="絞り込み条件の作成" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="kJWoyGNlrdrAZJe1wo12-1">
+          <mxGeometry x="855" y="50" width="140" height="40" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
