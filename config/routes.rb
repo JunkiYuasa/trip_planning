@@ -15,6 +15,10 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: "public/sessions"
   }
+  # 退会確認画面
+  get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
+  # 退会処理
+  patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
   
   #管理者用
   # URL /admin/sign_in

@@ -1,2 +1,27 @@
-<h1>Public::Users#edit</h1>
-<p>Find me in app/views/public/users/edit.html.erb</p>
+<h2>プロフィール編集</h2>
+<%= form_with model: @user, url: user_path, method: :patch do |f| %>
+  
+  <div class="field py-3">
+    <%= f.label :プロフィール画像 %><br />
+    <%= f.file_field :image, accept: "image/*" %>
+  </div>
+  
+  <div class="field py-3">
+    <%= f.label :ユーザーネーム %><br />
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field py-3">
+    <%= f.label :メールアドレス %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+  
+  <div class="field py-3">
+    <%= f.label :紹介文 %><br />
+    <%= f.text_area :introduction %>
+  </div>
+
+  <div class="actions py-3">
+    <%= f.submit "変更する" %>
+  </div>
+<% end %>
