@@ -1,0 +1,26 @@
+<h1 class="my-4">カテゴリー作成</h1>
+<%= form_with model: @category, url: admin_categories_path do |f| %>
+  
+  <!--目的の選択-->
+  <div class="m-3">
+    <h4>目的</h4>
+    <div class="field d-flex">
+      <%= f.collection_radio_buttons :purpose_id, @purposes, :id, :name do |purpose| %>
+        <div class="mx-3">
+          <%= purpose.radio_button %>
+          <%= purpose.label %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  
+  <div class="m-3">
+    <h4>カテゴリー名</h4>
+    <%= f.text_field :name %>
+  </div>
+  
+  <div class="my-4">
+    <%= f.submit "作成" %>
+  </div>
+
+<% end %>

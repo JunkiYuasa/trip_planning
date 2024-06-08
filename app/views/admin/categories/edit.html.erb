@@ -1,0 +1,28 @@
+<h1 class="my-4">カテゴリー編集</h1>
+<%= link_to "削除", admin_category_path(@category), method: :delete, data: { confirm: "本当に削除しますか？" } , class: "btn btn-danger"%>
+
+<%= form_with model: @category, url: admin_category_path do |f| %>
+  
+  <!--目的の選択-->
+  <div class="m-3">
+    <h4>目的</h4>
+    <div class="field d-flex">
+      <%= f.collection_radio_buttons :purpose_id, @purposes, :id, :name do |purpose| %>
+        <div class="mx-3">
+          <%= purpose.radio_button %>
+          <%= purpose.label %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  
+  <div class="m-3">
+    <h4>カテゴリー名</h4>
+    <%= f.text_field :name %>
+  </div>
+  
+  <div class="my-4">
+    <%= f.submit "変更" %>
+  </div>
+
+<% end %>

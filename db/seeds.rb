@@ -7,6 +7,10 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Admin.create!(
-  email: 'tripla@0726',
-  password: 'ojunjun'
+  email: "tripla@0726",
+  password: "ojunjun"
 )
+
+Purpose.create!(name: "食事")
+Purpose.create!(name: "観光")
+Purpose.create!(name: "宿泊")

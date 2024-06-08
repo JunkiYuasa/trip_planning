@@ -1,10 +1,5 @@
 Rails.application.routes.draw do
   
-  namespace :public do
-    get 'users/show'
-    get 'users/index'
-    get 'users/edit'
-  end
   root :to =>"public/homes#top"  #TOPページ
   get "/about" => "public/homes#about"  #ABOUTページ
   get "/admin" => "admin/homes#top"  #カテゴリー、特徴ジャンル、特徴一覧（管理者用）
@@ -33,6 +28,10 @@ Rails.application.routes.draw do
   
   
   namespace :admin do
+    resources :categories
+    resources :feature_genres
+    resources :features
+    resources :feature_purposes
   end
   
 end
