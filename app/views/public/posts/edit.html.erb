@@ -1,0 +1,96 @@
+<h1 class="my-4">投稿編集</h1>
+
+<%= form_with model: @post do |f| %>
+  
+  <div>画像を変更する</div>
+  <div class="m-3" id="image-fields">
+    <h4>画像</h4>
+    <div class="field my-2">
+      <%= f.file_field :images, multiple: true, direct_upload: true %>
+      <div class="image-preview"></div>
+    </div>
+  </div>
+
+  <div>
+    <button type="button" id="add-image-field">追加</button>
+  </div>
+
+  <div class="m-3">
+    <h4>カテゴリー</h4>
+    <div class="field d-flex">
+      <%= f.collection_radio_buttons :category_id, @categories, :id, :name do |category| %>
+        <div class="mx-3">
+          <%= category.radio_button %>
+          <%= category.label %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  
+  <div class="m-3">
+    <h4>投稿タイトル(必須)</h4>
+    <div class="field">
+      <%= f.text_field :title %>
+    </div>
+  </div>
+  
+  
+  
+  <div class="m-3">
+    <h4>施設名(必須)</h4>
+    <div class="field">
+      <%= f.text_field :name %>
+    </div>
+  </div>
+  
+  <div class="m-3">
+    <h4>本文</h4>
+    <div class="field">
+      <%= f.text_area :introduction %>
+    </div>
+  </div>
+  
+  <div class="m-3">
+    <h4>住所</h4>
+    <div class="field">
+      <%= f.text_field :address %>
+    </div>
+  </div>
+  
+  <div class="m-3">
+    <h4>総額</h4>
+    <div class="field">
+      <%= f.text_field :min_fee, placeholder: "最低額" %>円～<br>
+      <%= f.text_field :max_fee, placeholder: "最高額" %>円
+    </div>
+  </div>
+  
+  <div class="m-3">
+    <h4>特徴（複数選択可）</h4>
+    <% @feature_genres.each do |feature_genre| %>
+      <div class="mb-2">
+        <div class="m-1"><%= feature_genre.name %></div>
+        <div class="field">
+          <% feature_genre.features.each do |feature| %>
+            <% if feature.purposes.pluck(:id).include?(@purpose.id) %>
+              <%= check_box_tag "post[feature_ids][]", feature.id, @post.feature_ids.include?(feature.id) %>
+              <%= feature.name %><br>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  
+  <div class="m-3">
+    <h4>サイトURL</h4>
+    <div class="field">
+      <%= f.text_field :site_url %>
+    </div>
+  </div>
+  
+  <div class="my-4">
+    <%= f.submit "変更" %>
+  </div>
+<% end %>
+

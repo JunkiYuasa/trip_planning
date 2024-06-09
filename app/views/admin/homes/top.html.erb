@@ -39,7 +39,7 @@
           <%= link_to "編集", edit_admin_feature_genre_path(feature_genre), class: "btn btn-success" %>
         </div>
       </div>
-      <div class="d-flex">
+      <div class="d-flex flex-wrap">
         <% feature_genre.features.each do |feature| %>
           <div class="m-2">
             <%= link_to feature.name, edit_admin_feature_path(feature) %>

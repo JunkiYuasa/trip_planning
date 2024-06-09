@@ -10,6 +10,6 @@
 <h2><%= @user.name %></h2>
 <div>フォロー中 〇人　　フォロワー 〇人</div>
 <div class="py-3"><%= @user.introduction %></div>
-<% if @user == current_user || admin_signed_in? %>
+<% if (@user == current_user && !@user.guest_user?) || admin_signed_in? %>
   <div><%= link_to "編集", edit_user_path(@user) %></div>
 <% end %>

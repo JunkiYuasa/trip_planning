@@ -4,7 +4,7 @@
   
   <h4>表示させる投稿（複数選択可）</h4>
   <div class="field">
-    <% Purpose.all.each do |purpose| %>
+    <% @purposes.each do |purpose| %>
       <%= check_box_tag "feature[purpose_ids][]", purpose.id, true, id: "purpose_#{purpose.id}" %>
       <%= purpose.name %><br>
     <% end %>
