@@ -1,0 +1,65 @@
+<h1 class="my-4">検索条件入力（任意）</h1>
+
+<%= form_with url: search_result_path, method: :get do |f| %>
+
+  <%= f.hidden_field :purpose_id, value: @purpose.id %>
+
+  <div class="m-3">
+    <h4>カテゴリー（選択したカテゴリーのいずれかを含む投稿）</h4>
+    <div class="field d-flex flex-wrap">
+      <% @categories.each do |category| %>
+        <div class="mx-3">
+          <%= check_box_tag "category_ids[]", category.id %>
+          <%= category.name %><br>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  
+  <div class="m-3">
+    <h4>店名キーワード</h4>
+    <div class="field">
+      <%= f.text_field :name %>
+    </div>
+  </div>
+  
+  <div class="m-3">
+    <h4>住所キーワード</h4>
+    <div class="field">
+      <%= f.text_field :address, placeholder: "例：東京、新宿" %>
+    </div>
+  </div>
+  
+  <div class="m-3">
+    <h4>予算</h4>
+    <div class="field">
+      <%= f.number_field :over, placeholder: "半角数字" %>円以上
+    </div>
+    <div class="field">
+      <%= f.number_field :under, placeholder: "半角数字" %>円以下
+    </div>
+  </div>
+  
+  <div class="m-3">
+    <h4>特徴（選択した特徴のすべてを含む投稿）</h4>
+    <% @feature_genres.each do |feature_genre| %>
+      <div class="mb-2">
+        <strong class="m-1"><%= feature_genre.name %></strong>
+        <div class="field d-flex flex-wrap">
+          <% feature_genre.features.each do |feature| %>
+            <% if feature.purposes.pluck(:id).include?(@purpose.id) %>
+              <div class="m-2">
+                <%= check_box_tag "post[feature_ids][]", feature.id, false, id: "feature_#{feature.id}" %>
+                <%= feature.name %><br>                
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  
+  <div class="my-4">
+    <%= f.submit "検索" %>
+  </div>
+<% end %>

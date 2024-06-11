@@ -27,6 +27,9 @@ Rails.application.routes.draw do
     resources :posts do
       get 'subject', on: :collection
     end
+    get "/search/subject", to: "searches#subject"
+    get "/search/condition", to: "searches#condition"
+    get "/search/result", to: "searches#result"
   end
   
   

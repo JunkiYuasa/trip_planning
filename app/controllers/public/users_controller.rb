@@ -7,7 +7,14 @@ class Public::UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    @word = params[:word]
+    if @word.present?
+      @heading = "ユーザー一覧<br>「#{@word}」の検索結果"
+      @users = User.where("name like ?", "%#{@word}%")
+    else
+      @heading = "ユーザー一覧"
+      @users = User.all
+    end
   end
 
   def edit

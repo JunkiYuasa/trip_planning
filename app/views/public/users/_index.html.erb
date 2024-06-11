@@ -1,0 +1,31 @@
+<h1><%= heading.html_safe %></h1>
+
+<div class="my-4">
+  <%= form_with url: url, method: :get do |f| %>
+    <%= f.text_field :word, placeholder: "ユーザーネーム検索" %>
+    <%= f.submit "検索" %>
+  <% end %>
+</div>
+
+<% users.each do |user| %>
+  <div class="m-2 p-3 border w-50 shadow">
+    <div class="d-flex align-items-center">
+      <div>
+        <%= link_to user_path(user) do %>  
+          <% if user.image.attached? %>
+            <%= image_tag user.image, size: "40x40" %>
+          <% else %>
+            <%= image_tag "person", size: "40x40" %>
+          <% end %>
+          <%= user.name %>
+        <% end %>  
+      </div>
+      <div class="mx-4">
+        フォローする
+      </div>
+    </div>
+    <div class="p-2">
+      <%= user.introduction %>
+    </div> 
+  </div>
+<% end %>
