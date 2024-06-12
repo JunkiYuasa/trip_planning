@@ -18,6 +18,7 @@ class Public::SearchesController < ApplicationController
   def result
     @posts = Post.all
     
+    # 検索条件が入力されていた場合、それぞれ絞り込みを適応させる
     if params[:category_ids].present?
       category_ids = params[:category_ids].map(&:to_i)
       @posts = @posts.where(category_id: category_ids)
@@ -42,6 +43,9 @@ class Public::SearchesController < ApplicationController
                      .group('posts.id')
                      .having('COUNT(features.id) = ?', feature_ids.count)
     end
+    
+    # 新着順に並び替え
+    @posts = @posts.order(created_at: :desc)
     
   end
   

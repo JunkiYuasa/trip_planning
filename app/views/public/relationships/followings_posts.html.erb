@@ -4,7 +4,6 @@
   <div class="p-1 mx-3"><%= link_to "いいね", favorite_posts_path %></div>
 </div>
 
-<h1>いいねした投稿</h1>
-<div class="favorite_btn">
-  <%= render "index", posts: @posts %>
-</div>
+<h1>フォローしているユーザーの投稿</h1>
+
+<%= render "public/posts/index", posts: @posts %>
