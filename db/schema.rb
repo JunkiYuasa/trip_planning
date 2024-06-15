@@ -81,8 +81,8 @@ ActiveRecord::Schema.define(version: 2024_06_11_130053) do
   end
 
   create_table "feature_purposes", force: :cascade do |t|
-    t.integer "feature_id"
-    t.integer "purpose_id"
+    t.integer "feature_id", null: false
+    t.integer "purpose_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
