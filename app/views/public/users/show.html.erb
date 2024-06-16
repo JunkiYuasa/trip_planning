@@ -1,11 +1,7 @@
 <div class="py-1"><%= flash[:notice] %></div>
 
 <div>
-  <% if @user.image.attached? %>
-    <%= image_tag @user.image, size: "150x150" %>
-  <% else %>
-    <%= image_tag "person", size: "150x150" %>
-  <% end %>
+  <%= render "icon", user: @user, size: "150x150" %>
 </div>
 <h2><%= @user.name %></h2>
 <div class="d-flex relationships_number_<%= @user.id %>">

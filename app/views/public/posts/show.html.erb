@@ -2,11 +2,7 @@
 
 <div>
   <%= link_to user_path(@post.user) do %>
-    <% if @post.user.image.attached? %>
-      <%= image_tag @post.user.image, size: "50x50" %>
-    <% else %>
-      <%= image_tag "person", size: "50x50" %>
-    <% end %>
+    <%= render "icon", user: @post.user, size: "50x50" %>
     <%= @post.user.name %>
   <% end %>
   <span class="m-2"><%= @post.purpose.name %></span>

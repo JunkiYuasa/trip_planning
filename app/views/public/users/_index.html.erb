@@ -7,19 +7,15 @@
       <%= f.submit "検索" %>
     <% end %>
   </div>
-  
+
   <% users.each do |user| %>
     <div class="m-2 p-3 border w-50 shadow">
       <div class="d-flex align-items-center">
         <div>
-          <%= link_to user_path(user) do %>  
-            <% if user.image.attached? %>
-              <%= image_tag user.image, size: "40x40" %>
-            <% else %>
-              <%= image_tag "person", size: "40x40" %>
-            <% end %>
+          <%= link_to user_path(user) do %>
+            <%= render "icon", user: user, size: "40x40" %>
             <%= user.name %>
-          <% end %>  
+          <% end %>
         </div>
         <% if user != current_user && !user.guest_user? %>
           <div class="mx-4 follow_btn_<%= user.id %>">
@@ -29,10 +25,10 @@
       </div>
       <div class="p-2">
         <%= user.introduction %>
-      </div> 
+      </div>
     </div>
   <% end %>
-  
+
 <% else %>
   <p>ユーザーはいません</p>
 <% end %>
