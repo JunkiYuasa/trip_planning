@@ -5,12 +5,29 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    
+    <script src="https://kit.fontawesome.com/f056f30567.js" crossorigin="anonymous"></script>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <header>
+      <h1>とりぷら！-Trip Planning-</h1>
+      <% if user_signed_in? %>       
+        <%= link_to "投稿一覧", posts_path %>
+        <%= link_to "投稿検索", search_subject_path %>
+        <%= link_to "投稿する", subject_posts_path %>
+        <%= link_to "ユーザー一覧", users_path %>
+        <%= link_to "マイページ", user_path(current_user) %>
+        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+      <% elsif admin_signed_in? %>
+        <%= link_to "投稿一覧", posts_path %>
+        <%= link_to "投稿検索", search_subject_path %>
+        <%= link_to "ユーザー一覧", users_path %>
+        <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+      <% end %>
+    </header>
     <%= yield %>
   </body>
 </html>

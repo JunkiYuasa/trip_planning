@@ -1,0 +1,31 @@
+<h1 class="my-4">特徴編集</h1>
+<%= link_to "削除", admin_feature_path(@feature), method: :delete, data: { confirm: "本当に削除しますか？" } , class: "btn btn-danger"%>
+
+<%= form_with model: @feature, url: admin_feature_path do |f| %>
+  <h4>表示させる投稿（複数選択可）</h4>
+  <div class="field">
+    <% Purpose.all.each do |purpose| %>
+      <%= check_box_tag "feature[purpose_ids][]", purpose.id, @feature.purpose_ids.include?(purpose.id) %>
+      <%= purpose.name %><br>
+    <% end %>
+  </div>
+
+  <h4>特徴ジャンル</h4>
+  <div class="field d-flex">
+    <%= f.collection_radio_buttons :feature_genre_id, @feature_genres, :id, :name do |feature_genre| %>
+      <div class="mx-3">
+        <%= feature_genre.radio_button %>
+        <%= feature_genre.label %>
+      </div>
+    <% end %>
+  </div>
+  
+  <h4>特徴名</h4>
+  <div class="field">
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="my-4">
+    <%= f.submit "変更" %>
+  </div>
+<% end %>

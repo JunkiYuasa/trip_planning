@@ -1,0 +1,20 @@
+<h1 class="my-4">検索条件入力</h1>
+
+<%= flash[:alert] %>
+
+<%= form_with url: search_condition_path, method: :get do |f| %>
+  <div class="m-3">
+    <h4>目的</h4>
+    <div class="field d-flex">
+      <%= f.collection_radio_buttons :purpose_id, @purposes, :id, :name do |purpose| %>
+        <div class="mx-3">
+          <%= purpose.radio_button %>
+          <%= purpose.label %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="my-4">
+    <%= f.submit "次へ" %>
+  </div>
+<% end %>

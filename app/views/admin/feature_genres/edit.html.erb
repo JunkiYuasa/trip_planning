@@ -1,0 +1,16 @@
+<h1 class="my-4">特徴ジャンル編集</h1>
+<%= link_to "削除", admin_feature_genre_path(@feature_genre), method: :delete, data: { confirm: "本当に削除しますか？" } , class: "btn btn-danger"%>
+
+<%= form_with model: @feature_genre, url: admin_feature_genre_path do |f| %>
+  
+  <div class="m-3">
+    <h4>特徴ジャンル名</h4>
+    <%= f.text_field :name %>
+  </div>
+  
+  <div class="my-4">
+    <%= f.submit "変更" %>
+  </div>
+
+<% end %>
+

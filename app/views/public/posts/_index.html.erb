@@ -1,0 +1,35 @@
+<% if posts.present? %>
+
+  <% posts.each do |post| %>
+    <div class="m-2 p-3 border w-25 shadow">
+      <%= link_to user_path(post.user) do %>
+        <div>
+          <% if post.user.image.attached? %>
+            <%= image_tag post.user.image, size: "40x40" %>
+          <% else %>
+            <%= image_tag "person", size: "40x40" %>
+          <% end %>
+          <%= post.user.name %>
+        </div>
+      <% end %>
+      <%= link_to post_path(post) do %>  
+        <h4><%= post.title %></h4>
+        <span><%= post.purpose.name %></span>
+        <span><%= post.category.name %></span>
+        <div class="m-2">
+          <% post.images.each do |image| %>
+            <%= image_tag image, size: "100x100" %>
+          <% end %>
+        </div>
+      <% end %>
+      <div class="d-flex p-2">
+        <div class="mx-4 favorite_btn_<%= post.id %>">
+          <%= render "public/favorites/btn", post: post %>
+        </div>
+      </div>
+    </div>  
+  <% end %>  
+<!--投稿がない場合-->
+<% else %>
+  <p>投稿がありません</p>
+<% end %>

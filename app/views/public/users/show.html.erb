@@ -1,0 +1,24 @@
+<div class="py-1"><%= flash[:notice] %></div>
+
+<div>
+  <% if @user.image.attached? %>
+    <%= image_tag @user.image, size: "150x150" %>
+  <% else %>
+    <%= image_tag "person", size: "150x150" %>
+  <% end %>
+</div>
+<h2><%= @user.name %></h2>
+<div class="d-flex relationships_number_<%= @user.id %>">
+  <%= render "public/relationships/number", user: @user %>
+</div>
+<div class="py-3"><%= @user.introduction %></div>
+<% if (@user == current_user && !@user.guest_user?) || admin_signed_in? %>
+  <div class="mx-4 my-2">
+    <%= link_to "編集", edit_user_path(@user), class: "btn btn-success" %></div>
+  </div>
+<% elsif !@user.guest_user? %>
+  <div class="mx-4 my-2 follow_btn_<%= @user.id %>">
+    <%= render "public/relationships/btn", user: @user %>
+  </div>
+  <%= render "public/posts/index", posts: @posts %>
+<% end %>

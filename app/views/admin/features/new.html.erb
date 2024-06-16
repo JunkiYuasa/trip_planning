@@ -1,0 +1,32 @@
+<h1 class="my-4">特徴作成</h1>
+
+<%= form_with model: @feature, url: admin_features_path do |f| %>
+  
+  <h4>表示させる投稿（複数選択可）</h4>
+  <div class="field">
+    <% @purposes.each do |purpose| %>
+      <%= check_box_tag "feature[purpose_ids][]", purpose.id, true, id: "purpose_#{purpose.id}" %>
+      <%= purpose.name %><br>
+    <% end %>
+  </div>
+  
+  <h4>特徴ジャンル</h4>
+  <div class="field d-flex">
+    <%= f.collection_radio_buttons :feature_genre_id, @feature_genres, :id, :name do |feature_genre| %>
+      <div class="mx-3">
+        <%= feature_genre.radio_button %>
+        <%= feature_genre.label %>
+      </div>
+    <% end %>
+  </div>
+  
+  <h4>特徴名</h4>
+  <div class="field">
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="my-4">
+    <%= f.submit "作成" %>
+  </div>
+<% end %>
+
