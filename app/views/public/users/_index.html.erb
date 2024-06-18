@@ -13,11 +13,11 @@
       <div class="d-flex align-items-center">
         <div>
           <%= link_to user_path(user) do %>
-            <%= render "icon", user: user, size: "40x40" %>
+            <%= render "public/users/icon", user: user, size: "40x40" %>
             <%= user.name %>
           <% end %>
         </div>
-        <% if user != current_user && !user.guest_user? %>
+        <% if user != current_user %>
           <div class="mx-4 follow_btn_<%= user.id %>">
             <%= render "public/relationships/btn", user: user %>
           </div>

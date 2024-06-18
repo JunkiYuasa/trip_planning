@@ -1,0 +1,19 @@
+<h1>プランジャンル一覧</h1>
+<table>
+  <tbody>
+    <% @plan_genres.each do |plan_genre| %>
+      <tr>
+        <td style="background-color:<%= plan_genre.color %>;"></td>
+        <td><%= plan_genre.name %></td>
+        <td>
+          <% unless plan_genre.standard %>
+            <%= link_to 'Edit', edit_plan_genre_path(plan_genre) %>
+            <%= link_to 'Delete', plan_genre_path(plan_genre), method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "新規作成", new_plan_genre_path %>
