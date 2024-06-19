@@ -12,9 +12,9 @@
   <div class="mx-4 my-2">
     <%= link_to "編集", edit_user_path(@user), class: "btn btn-success" %></div>
   </div>
-<% elsif !@user.guest_user? %>
+<% else %>
   <div class="mx-4 my-2 follow_btn_<%= @user.id %>">
     <%= render "public/relationships/btn", user: @user %>
   </div>
-  <%= render "public/posts/index", posts: @posts %>
 <% end %>
+<%= render "public/posts/index", posts: @posts %>

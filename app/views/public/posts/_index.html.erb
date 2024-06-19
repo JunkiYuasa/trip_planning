@@ -4,7 +4,7 @@
     <div class="m-2 p-3 border w-25 shadow">
       <%= link_to user_path(post.user) do %>
         <div>
-          <%= render "icon", user: post.user, size: "40x40" %>
+          <%= render "public/users/icon", user: post.user, size: "40x40" %>
           <%= post.user.name %>
         </div>
       <% end %>

@@ -2,7 +2,7 @@
 
 <% if @plan_genre.errors.any? %>
   <div class="message">
-    <%= @plan_genre.errors.count %>error prohibited this obj from being saved:
+    <%= @plan_genre.errors.count %>errors prohibited this obj from being saved:
     <ul>
       <% @plan_genre.errors.full_messages.each do |message| %>
         <li><%= message %></li>

@@ -2,7 +2,7 @@
 
 <div>
   <%= link_to user_path(@post.user) do %>
-    <%= render "icon", user: @post.user, size: "50x50" %>
+    <%= render "public/users/icon", user: @post.user, size: "50x50" %>
     <%= @post.user.name %>
   <% end %>
   <span class="m-2"><%= @post.purpose.name %></span>
@@ -49,7 +49,13 @@
     <%= render "public/favorites/btn", post: @post %>
   </div>
   <div class="mx-4">
-    P
+    <%= link_to "P", new_plan_path(
+      name: @post.name,
+      plan_genre_id: PlanGenre.find_by(name: @post.purpose.name)&.id,
+      address: @post.address,
+      post_url: request.original_url,
+      site_url: @post.site_url
+    ) %>
   </div>
   <div class="mx-4">
     <%= @post.comments.count %>コメント

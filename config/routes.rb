@@ -32,6 +32,7 @@ Rails.application.routes.draw do
       resources :comments, only: [:create, :destroy]
     end
     resources :plans
+    get '/plans', to: 'plans#index', defaults: { format: 'json' }
     resources :plan_genres
     get "/search/subject", to: "searches#subject"
     get "/search/condition", to: "searches#condition"
