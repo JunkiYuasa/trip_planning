@@ -1,5 +1,5 @@
 <h1>投稿詳細</h1>
-
+<%= flash[:alert] %>
 <div>
   <%= link_to user_path(@post.user) do %>
     <%= render "public/users/icon", user: @post.user, size: "50x50" %>
@@ -43,19 +43,21 @@
 <% end %>
 <% if @post.user == current_user || admin_signed_in? %>
   <div class="mx-4 my-2"><%= link_to "編集", edit_post_path(@post), class: "btn btn-success" %></div>
+  <div class="mx-4 my-2"><%= link_to "削除", post_path(@post), method: :delete, data: { confirm: "本当に削除しますか？"} , class: "btn btn-danger"%></div>
 <% end %>
 <div class="d-flex p-2">
   <div class="mx-4 favorite_btn">
     <%= render "public/favorites/btn", post: @post %>
   </div>
   <div class="mx-4">
-    <%= link_to "P", new_plan_path(
-      name: @post.name,
-      plan_genre_id: PlanGenre.find_by(name: @post.purpose.name)&.id,
-      address: @post.address,
-      post_url: request.original_url,
-      site_url: @post.site_url
-    ) %>
+    <%= form_with url: new_plan_path, method: :get do |f| %>
+      <%= hidden_field_tag "plan[name]", @post.name %>
+      <%= hidden_field_tag "plan[plan_genre_id]", PlanGenre.find_by(name: @post.purpose.name)&.id %>
+      <%= hidden_field_tag "plan[address]", @post.address %>
+      <%= hidden_field_tag "plan[post_url]", request.original_url %>
+      <%= hidden_field_tag "plan[site_url]", @post.site_url %>
+      <%= f.submit "プラン作成" %>
+    <% end %>
   </div>
   <div class="mx-4">
     <%= @post.comments.count %>コメント

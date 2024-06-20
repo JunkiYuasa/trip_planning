@@ -1,9 +1,13 @@
 class Public::PlansController < ApplicationController
+  before_action :authenticate_user!
+
   def new
-    @plan = Plan.new
-    @plan_genres = PlanGenre.all
-    # @plan_genres = PlanGenre.where('standard = ? OR user_id = ?', true, current_user.id)
-    @default_plan_genre = PlanGenre.find_by(id: params[:plan_genre_id])
+    if params[:plan]
+      @plan = Plan.new(plan_params)
+    else
+      @plan = Plan.new
+    end
+    @plan_genres = PlanGenre.where('standard = ? OR user_id = ?', true, current_user.id)
   end
 
   def create

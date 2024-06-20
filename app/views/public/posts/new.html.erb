@@ -1,9 +1,11 @@
 <h1 class="my-4">投稿作成</h1>
 
+<%= render 'layouts/error_messages', model: @post %>
+
 <%= form_with model: @post do |f| %>
 
   <%= f.hidden_field :purpose_id, value: @purpose.id %>
-  
+
   <div class="m-3" id="image-fields">
     <h4>画像</h4>
     <div class="field my-2">
@@ -27,37 +29,37 @@
       <% end %>
     </div>
   </div>
-  
+
   <div class="m-3">
     <h4>投稿タイトル(必須)</h4>
     <div class="field">
       <%= f.text_field :title %>
     </div>
   </div>
-  
-  
-  
+
+
+
   <div class="m-3">
     <h4>施設名(必須)</h4>
     <div class="field">
       <%= f.text_field :name %>
     </div>
   </div>
-  
+
   <div class="m-3">
     <h4>本文</h4>
     <div class="field">
       <%= f.text_area :introduction %>
     </div>
   </div>
-  
+
   <div class="m-3">
     <h4>住所</h4>
     <div class="field">
       <%= f.text_field :address %>
     </div>
   </div>
-  
+
   <div class="m-3">
     <h4>総額</h4>
     <div class="field">
@@ -65,7 +67,7 @@
       <%= f.number_field :max_fee, placeholder: "最高額" %>円
     </div>
   </div>
-  
+
   <div class="m-3">
     <h4>特徴（複数選択可）</h4>
     <% @feature_genres.each do |feature_genre| %>
@@ -82,14 +84,14 @@
       </div>
     <% end %>
   </div>
-  
+
   <div class="m-3">
     <h4>サイトURL</h4>
     <div class="field">
       <%= f.text_field :site_url %>
     </div>
   </div>
-  
+
   <div class="my-4">
     <%= f.submit "投稿" %>
   </div>

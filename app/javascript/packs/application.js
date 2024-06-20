@@ -10,11 +10,16 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
-import './calendar';
 import "jquery";
 import "popper.js";
 import "bootstrap";
 import "../stylesheets/application";
+
+import './calendar';
+import flatpickr from 'flatpickr';
+import 'flatpickr/dist/flatpickr.css';
+import { Japanese } from 'flatpickr/dist/l10n/ja.js';
+
 
 Rails.start()
 Turbolinks.start()
@@ -52,5 +57,15 @@ $(document).on('turbolinks:load', function() {
       };
       reader.readAsDataURL(files[i]);
     }
+  });
+});
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  flatpickr('.datepicker', {
+    locale: Japanese,
+    enableTime: true,
+    dateFormat: "Y-m-d H:i",
+    time_24hr: true
   });
 });
