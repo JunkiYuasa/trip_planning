@@ -29,38 +29,35 @@ ActiveStorage.start()
 //投稿時、1枚ずつ画像の追加と削除を出来るようにする
 $(document).on('turbolinks:load', function() {
   $('#add-image-field').on('click', function() {
-    var imageField = `
-      <div class="field">
-        <input type="file" name="post[images][]" multiple="true" direct_upload="true">
-        <button type="button" class="remove-image-field">削除</button>
-      </div>`;
-    $('#image-fields').append(imageField);
+    $('.image-upload-field').trigger('click');
   });
 
-  $('#image-fields').on('click', '.remove-image-field', function() {
-    $(this).closest('.field').remove();
-  });
-
-  $('#image-fields').on('change', 'input[type="file"]', function() {
+  $(document).on('change', '.image-upload-field', function() {
     var files = this.files;
-    var preview = $(this).siblings('.image-preview');
-    if (preview.length == 0) {
-      preview = $('<div class="image-preview"></div>');
-      $(this).after(preview);
-    }
-    preview.empty();
+
     for (var i = 0; i < files.length; i++) {
       var reader = new FileReader();
       reader.onload = function(e) {
-        var img = $('<img>').attr('src', e.target.result).css('width', '100px');
-        preview.append(img);
+        var imageField = `
+          <div class="field">
+            <img src="${e.target.result}" style="width: 100px;">
+            <button type="button" class="remove-image-field">削除</button>
+          </div>`;
+        $('#image-preview-container').append(imageField);
       };
       reader.readAsDataURL(files[i]);
     }
   });
+
+  $(document).on('click', '.remove-image-field', function() {
+    $(this).closest('.field').remove();
+    // Optionally, you can clear the associated file input if needed:
+    // $('.image-upload-field').val(null);
+  });
 });
 
 
+// プランの日時選択
 document.addEventListener('DOMContentLoaded', () => {
   flatpickr('.datepicker', {
     locale: Japanese,

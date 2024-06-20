@@ -1,2 +1,28 @@
-<h1>Public::Plans#show</h1>
-<p>Find me in app/views/public/plans/show.html.erb</p>
+<h1>プラン詳細</h1>
+
+<h3><%= @plan.name %></h3>
+<div class="m-2">
+  <%= @plan.start_time %>
+   >
+  <%= @plan.end_time %>
+</div>
+<div class "m-2">
+  <div style="background-color:<%= @plan.plan_genre.color %>;">
+    <%= @plan.plan_genre.name %>
+  </div>
+</div>
+<div class="m-2"><%= @plan.address %></div>
+<% if @plan.post_url.present? %>
+  <div>
+    <%= link_to "参照元URL", @plan.post_url, target: '_blank', rel: 'noopener' %>
+  </div>
+<% end %>
+<% if @plan.site_url.present? %>
+  <div>
+    <%= link_to "サイトURL", @plan.site_url, target: '_blank', rel: 'noopener' %>
+  </div>
+<% end %>
+<div class="m-2"><%= @plan.remark %></div>
+
+<div class="mx-4 my-2"><%= link_to "編集", edit_plan_path(@plan), class: "btn btn-success" %></div>
+<div class="mx-4 my-2"><%= link_to "削除", plan_path(@plan), method: :delete, data: { confirm: "本当に削除しますか？"} , class: "btn btn-danger"%></div>

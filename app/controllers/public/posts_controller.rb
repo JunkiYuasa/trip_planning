@@ -51,7 +51,7 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     if @post.update(post_params)
       flash[:notice] = "投稿を変更しました"
-      redirect_to posts_path
+      redirect_to post_path(@post)
     else
       render :edit
     end
@@ -61,7 +61,7 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     if @post.destroy
       flash[:notice] = "投稿を削除しました"
-      redirect_to user_path(@post.user_id)
+      redirect_to user_path(current_user.id)
     end
   end
 

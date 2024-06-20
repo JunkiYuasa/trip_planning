@@ -25,9 +25,6 @@ class Public::PlansController < ApplicationController
     end
   end
 
-  def show
-  end
-
   def index
     @plans = current_user.plans
     respond_to do |format|
@@ -36,7 +33,30 @@ class Public::PlansController < ApplicationController
     end
   end
 
+  def show
+    @plan = Plan.find(params[:id])
+  end
+
   def edit
+    @plan = Plan.find(params[:id])
+    @plan_genres = PlanGenre.where('standard = ? OR user_id = ?', true, current_user.id)
+  end
+
+  def update
+    @plan = Plan.find(params[:id])
+    if @plan.update(plan_params)
+      flash[:notice] = "プランを変更しました"
+      redirect_to plan_path(@plan)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @plan = Plan.find(params[:id])
+    @plan.destroy
+    flash[:notice] = "プランを削除しました"
+    redirect_to plans_path
   end
 
   private

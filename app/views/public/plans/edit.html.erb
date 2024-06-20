@@ -1,2 +1,49 @@
-<h1>Public::Plans#edit</h1>
-<p>Find me in app/views/public/plans/edit.html.erb</p>
+<h1>プラン編集</h1>
+
+<%= render 'layouts/error_messages', model: @plan %>
+
+<%= form_with model: @plan, local: true do |f| %>
+  <div class="field">
+    <%= f.label :name, "プラン名" %>
+    <%= f.text_field :name, value: @plan.name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :start_time, "開始時間" %>
+    <%= f.text_field :start_time, class: 'datepicker' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :end_time, "終了時間" %>
+    <%= f.text_field :end_time, class: 'datepicker' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :plan_genre_id, "プランジャンル" %>
+    <%= f.collection_select :plan_genre_id, @plan_genres, :id, :name, selected: @plan.plan_genre_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address, "住所" %>
+    <%= f.text_field :address, value: @plan.address %>
+  </div>
+
+  <div class="field">
+    <%= f.label :remark, "備考" %>
+    <%= f.text_area :remark %>
+  </div>
+
+  <div class="field">
+    <%= f.label :post_url, "投稿URL" %>
+    <%= f.text_field :post_url, value: @plan.post_url %>
+  </div>
+
+  <div class="field">
+    <%= f.label :site_url, "サイトURL" %>
+    <%= f.text_field :site_url, value: @plan.site_url %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "作成" %>
+  </div>
+<% end %>

@@ -7,8 +7,8 @@
         <td><%= plan_genre.name %></td>
         <td>
           <% unless plan_genre.standard %>
-            <%= link_to 'Edit', edit_plan_genre_path(plan_genre) %>
-            <%= link_to 'Delete', plan_genre_path(plan_genre), method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= link_to '編集', edit_plan_genre_path(plan_genre) %>
+            <%= link_to '削除', plan_genre_path(plan_genre), method: :delete, data: { confirm: 'Are you sure?' } %>
           <% end %>
         </td>
       </tr>
