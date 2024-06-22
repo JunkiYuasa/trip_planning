@@ -1,17 +1,19 @@
 <h1 class="my-4">投稿作成</h1>
 
-<%= form_with model: @post, local: true, html: { multipart: true } do |f| %>
+<%= form_with model: @post do |f| %>
 
   <%= f.hidden_field :purpose_id, value: @purpose.id %>
 
   <div class="m-3" id="image-fields">
     <h4>画像</h4>
     <div class="field my-2">
-      <%= f.file_field :images, multiple: true, direct_upload: true, class: 'image-upload-field' %>
+      <%= f.file_field :images, multiple: true, direct_upload: true %>
+      <div class="image-preview"></div>
     </div>
   </div>
-  <button type="button" id="add-image-field">追加</button>
-  <div id="image-preview-container"></div>
+  <div>
+    <button type="button" id="add-image-field">追加</button>
+  </div>
 
   <div class="m-3">
     <h4>カテゴリー</h4>

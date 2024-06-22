@@ -22,10 +22,10 @@
 <% end %>
 <h4><%= @post.title %></h4>
 <div><%= @post.introduction %></div>
-<div class="m-2">
+<div class="m-4 w-25 slider">
   <% @post.images.each do |image| %>
-    <div class="m-2 w-25 border">
-      <%= image_tag image, size: "320x180" %>
+    <div class="border d-flex justify-content-center align-items-center">
+      <%= image_tag image, class: "img-fluid", size: "240x130" %>
     </div>
   <% end %>
 </div>

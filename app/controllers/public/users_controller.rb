@@ -32,6 +32,17 @@ class Public::UsersController < ApplicationController
     end
   end
 
+  def withdrawal
+    @user = User.find(params[:id])
+  end
+
+  def destroy
+    @user = User.find(params[:id])
+    if @user.destroy
+      flash[:notice] = "アカウントを削除しました"
+      redirect_to root_path
+    end
+  end
   private
 
   def user_params

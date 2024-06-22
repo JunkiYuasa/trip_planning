@@ -26,6 +26,8 @@ Rails.application.routes.draw do
   	    get "followings", to: "relationships#followings", as: "followings"
   	    get "followers", to: "relationships#followers", as: "followers"
   	end
+  	get "user/withdrawal", to: "users#withdrawal"
+
     resources :posts do
       get 'subject', on: :collection
       get "not_exist", on: :collection

@@ -12,15 +12,20 @@
 </div>
 
 <!--目的別の絞り込み選択-->
-<div class="d-flex flex-wrap">  
+<div class="d-flex flex-wrap">
+  <div class="p-1 m-2">
+    <%= link_to "すべて", admin_path %>
+  </div>
   <% @purposes.each do |purpose| %>
-    <div class="p-1 m-2"><%= purpose.name %></div>
+    <div class="p-1 m-2">
+      <%= link_to purpose.name, admin_path(purpose_id: purpose.id) %>
+    </div>
   <% end %>
 </div>
 
 <div class="m-2">
   <h2>カテゴリー一覧</h2>
-  <div class="d-flex flex-wrap">  
+  <div class="d-flex flex-wrap">
     <% @categories.each do |category| %>
       <div class="p-1 m-2">
         <%= link_to category.name, edit_admin_category_path(category) %>
@@ -31,20 +36,33 @@
 
 <div class="m-2">
   <h2>特徴一覧</h2>
-  <div>  
+  <div>
     <% @feature_genres.each do |feature_genre| %>
-      <div class="py-2 d-flex align-items-center">
-        <strong><%= feature_genre.name %></strong>
+      <div class="py-2 d-flex align-items-center feature-genre">
+        <strong class="feature-genre-name">
+          <i class="toggle-icon fas fa-chevron-right"></i>
+          <%= feature_genre.name %>
+        </strong>
         <div class="mx-3">
           <%= link_to "編集", edit_admin_feature_genre_path(feature_genre), class: "btn btn-success" %>
         </div>
       </div>
-      <div class="d-flex flex-wrap">
+      <div class="features" style="display: none;">
+        <div class="d-flex flex-wrap">
         <% feature_genre.features.each do |feature| %>
-          <div class="m-2">
-            <%= link_to feature.name, edit_admin_feature_path(feature) %>
-          </div>
+          <% if @purpose.present? %>
+            <% if feature.purposes.pluck(:id).include?(@purpose.id) %>
+              <div class="m-2">
+                <%= link_to feature.name, edit_admin_feature_path(feature) %>
+              </div>
+            <% end %>
+          <% else %>
+            <div class="m-2">
+              <%= link_to feature.name, edit_admin_feature_path(feature) %>
+            </div>
+          <% end %>
         <% end %>
+        </div>
       </div>
     <% end %>
   </div>

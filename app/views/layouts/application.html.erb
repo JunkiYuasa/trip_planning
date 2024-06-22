@@ -5,30 +5,109 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/f056f30567.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <header>
-      <h1>とりぷら！-Trip Planning-</h1>
-      <% if user_signed_in? %>
-        <%= link_to "投稿一覧", posts_path %>
-        <%= link_to "投稿検索", search_subject_path %>
-        <%= link_to "投稿する", subject_posts_path %>
-        <%= link_to "スケジュール", plans_path, data: { turbolinks: false } %>
-        <%= link_to "ユーザー一覧", users_path %>
-        <%= link_to "マイページ", user_path(current_user) %>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-      <% elsif admin_signed_in? %>
-        <%= link_to "投稿一覧", posts_path %>
-        <%= link_to "投稿検索", search_subject_path %>
-        <%= link_to "ユーザー一覧", users_path %>
-        <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
-      <% end %>
+  <body style="background-color: #F0FFF4">
+    <header class="fixed-top w-100 d-flex justify-content-center align-items-center" style="background-color: #16E516; z-index: 1030;">
+      <a href="/about" class="text-light" style="text-decoration: none; cursor: default;">
+        <h3 class="pt-2 pb-1 text-center font-italic">とりぷら！-Trip Planning-</h3>
+      </a>
     </header>
-    <%= yield %>
+    <main style="margin-top: 80px;">
+      <% if user_signed_in? %>
+        <div class="menu container px-5 px-sm-0">
+          <div class="row">
+            <div class="py-4 col-lg-2 col-1 border-right position-fixed d-flex flex-column ustify-content-start" style="height: 100vh; overflow-y: auto;">
+              <div class="mt-4">
+                <%= link_to posts_path do %>
+                  <h4 class="d-none d-lg-block"><i class="fa-regular fa-image mr-3"></i>投稿一覧</h4>
+                  <h4 class="d-block d-lg-none"><i class="fa-regular fa-image"></i></h4>
+                <% end %>
+              </div>
+              <div class="mt-4">
+                <%= link_to search_subject_path do %>
+                  <h4 class="d-none d-lg-block"><i class="fa-solid fa-magnifying-glass mr-3"></i>投稿検索</h4>
+                  <h4 class="d-block d-lg-none"><i class="fa-solid fa-magnifying-glass"></i></h4>
+                <% end %>
+              </div>
+              <div class="mt-4">
+                <%= link_to subject_posts_path do %>
+                  <h4 class="d-none d-lg-block"><i class="fa-solid fa-square-plus mr-3"></i>投稿する</h4>
+                  <h4 class="d-block d-lg-none"><i class="fa-solid fa-square-plus"></i></h4>
+                <% end %>
+              </div>
+              <div class="mt-4">
+                <%= link_to plans_path, data: { turbolinks: false } do %>
+                  <h4 class="d-none d-lg-block"><i class="fa-regular fa-calendar mr-3"></i>カレンダー</h4>
+                  <h4 class="d-block d-lg-none"><i class="fa-regular fa-calendar"></i></h4>
+                <% end %>
+              </div>
+              <div class="mt-4">
+                <%= link_to users_path do %>
+                  <h4 class="d-none d-lg-block"><i class="fa-solid fa-users mr-3"></i>ユーザー</h4>
+                  <h4 class="d-block d-lg-none"><i class="fa-solid fa-users"></i></h4>
+                <% end %>
+              </div>
+              <div class="mt-4">
+                <%= link_to user_path(current_user) do %>
+                  <h4 class="d-none d-lg-block"><i class="fa-solid fa-house mr-3"></i>マイページ</h4>
+                  <h4 class="d-block d-lg-none"><i class="fa-solid fa-house"></i></h4>
+                <% end %>
+              </div>
+              <div class="mt-4">
+                <%= link_to destroy_user_session_path, method: :delete do %>
+                  <h4 class="d-none d-lg-block"><i class="fa-solid fa-right-from-bracket mr-3"></i>ログアウト</h4>
+                  <h4 class="d-block d-lg-none"><i class="fa-solid fa-right-from-bracket"></i></h4>
+                <% end %>
+              </div>
+            </div>
+            <div class='col-lg-9 offset-lg-3 col-md-8 offset-md-4 col-10 offset-2'>
+              <%= yield %>
+            </div>
+          </div>
+        </div>
+      <% elsif admin_signed_in? %>
+        <div class="menu container px-5 px-sm-0">
+          <div class="row">
+            <div class="py-4 col-lg-2 col-1 border-right position-fixed d-flex flex-column ustify-content-start" style="height: 100vh; overflow-y: auto;">
+              <div class="mt-4">
+                <%= link_to posts_path do %>
+                  <h4 class="d-none d-lg-block"><i class="fa-regular fa-image mr-3"></i>投稿一覧</h4>
+                  <h4 class="d-block d-lg-none"><i class="fa-regular fa-image"></i></h4>
+                <% end %>
+              </div>
+              <div class="mt-4">
+                <%= link_to search_subject_path do %>
+                  <h4 class="d-none d-lg-block"><i class="fa-solid fa-magnifying-glass mr-3"></i>投稿検索</h4>
+                  <h4 class="d-block d-lg-none"><i class="fa-solid fa-magnifying-glass"></i></h4>
+                <% end %>
+              </div>
+              <div class="mt-4">
+                <%= link_to users_path do %>
+                  <h4 class="d-none d-lg-block"><i class="fa-solid fa-users mr-3"></i>ユーザー</h4>
+                  <h4 class="d-block d-lg-none"><i class="fa-solid fa-users"></i></h4>
+                <% end %>
+              </div>
+              <div class="mt-4">
+                <%= link_to destroy_user_session_path, method: :delete do %>
+                  <h4 class="d-none d-lg-block"><i class="fa-solid fa-right-from-bracket mr-3"></i>ログアウト</h4>
+                  <h4 class="d-block d-lg-none"><i class="fa-solid fa-right-from-bracket"></i></h4>
+                <% end %>
+              </div>
+            </div>
+            <div class='col-lg-9 offset-lg-3 col-11 offset-1'>
+              <%= yield %>
+            </div>
+          </div>
+        </div>
+      <% else %>
+        <%= yield %>
+      <% end %>
+    </main>
   </body>
 </html>
