@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   	    get "followings", to: "relationships#followings", as: "followings"
   	    get "followers", to: "relationships#followers", as: "followers"
   	end
-  	get "user/withdrawal", to: "users#withdrawal"
+  	get "/user/:id/withdrawal", to: "users#withdrawal", as: "withdrawal"
 
     resources :posts do
       get 'subject', on: :collection
@@ -34,15 +34,17 @@ Rails.application.routes.draw do
       resource :favorites, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]
     end
+    get "followings_posts", to: "relationships#followings_posts"
+    get "/favorite_posts", to: "favorites#favorite_posts"
+
     resources :plans
     get '/plans', to: 'plans#index', defaults: { format: 'json' }
+
     resources :plan_genres
+
     get "/search/subject", to: "searches#subject"
     get "/search/condition", to: "searches#condition"
     get "/search/result", to: "searches#result"
-
-    get "followings_posts", to: "relationships#followings_posts"
-    get "/favorite_posts", to: "favorites#favorite_posts"
   end
 
 

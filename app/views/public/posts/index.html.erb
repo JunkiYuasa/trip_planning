@@ -1,8 +1,10 @@
-<div class="d-flex">
-  <div class="p-1 mx-3"><%= link_to "すべて", posts_path %></div>
-  <div class="p-1 mx-3"><%= link_to "フォロー中", followings_posts_path %></div>
-  <div class="p-1 mx-3"><%= link_to "いいね", favorite_posts_path %></div>
-</div>
+<% if user_signed_in? %>
+  <div class="d-flex">
+    <div class="p-1 mx-3"><%= link_to "すべて", posts_path %></div>
+    <div class="p-1 mx-3"><%= link_to "フォロー中", followings_posts_path %></div>
+    <div class="p-1 mx-3"><%= link_to "いいね", favorite_posts_path %></div>
+  </div>
+<% end %>
 
 <h1>すべての投稿</h1>
 <div class="favorite_btn">

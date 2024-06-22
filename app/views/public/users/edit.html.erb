@@ -1,5 +1,5 @@
 <h2>プロフィール編集</h2>
-<div><%= link_to "アカウントを削除する", user_withdrawal_path, class: "btn btn-danger" %></div>
+<div><%= link_to "アカウントを削除する", withdrawal_path(@user), class: "btn btn-danger" %></div>
 <%= form_with model: @user, url: user_path, method: :patch do |f| %>
 
   <div class="field py-3">
