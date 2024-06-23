@@ -2,7 +2,7 @@ class Post < ApplicationRecord
 
   belongs_to :user
   belongs_to :purpose
-  belongs_to :category
+  belongs_to :category, optional: true
   has_many :favorites, dependent: :destroy
 
   #多対多の関連付け

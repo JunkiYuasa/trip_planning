@@ -11,12 +11,13 @@ class Public::SearchesController < ApplicationController
       @features = @purpose.features
     else
       flash[:alert] = "目的を選択してください"
-      redirect_to search_subject_path
+      redirect_to subject_posts_path
     end
   end
 
   def result
-    @posts = Post.all
+    purpose_id = params[:purpose_id].to_i
+    @posts = Post.where(purpose_id: purpose_id)
 
     # 検索条件が入力されていた場合、それぞれ絞り込みを適応させる
     if params[:category_ids].present?
@@ -50,6 +51,7 @@ class Public::SearchesController < ApplicationController
                    .select("posts.*, COUNT(CASE WHEN favorites.created_at >= '#{start_date}' THEN 1 END) AS recent_favorites_count, COUNT(favorites.id) AS total_favorites_count")
                    .group('posts.id')
                    .order('recent_favorites_count DESC, total_favorites_count DESC, posts.created_at DESC')
+                   .page(params[:page]).per(20)
   end
 
 end

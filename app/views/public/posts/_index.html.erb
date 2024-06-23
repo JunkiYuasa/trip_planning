@@ -11,9 +11,9 @@
       <%= link_to post_path(post) do %>
         <h4><%= post.title %></h4>
         <span><%= post.purpose.name %></span>
-        <span><%= post.category.name %></span>
+        <%= "<span>#{post.category.name}</span>".html_safe unless post.category.nil? %>
       <% end %>
-      <div class="m-4 w-50 slider">
+      <div class="m-4 w-50<%= " slider" if post.images.count >= 2 %>">
         <% post.images.each do |image| %>
           <div class="border d-flex justify-content-center align-items-center">
             <%= image_tag image, class: "img-fluid", size: "240x130" %>
@@ -31,3 +31,5 @@
 <% else %>
   <p>投稿がありません</p>
 <% end %>
+
+<%= paginate posts %>

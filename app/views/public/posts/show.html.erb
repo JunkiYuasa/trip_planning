@@ -6,13 +6,13 @@
     <%= @post.user.name %>
   <% end %>
   <span class="m-2"><%= @post.purpose.name %></span>
-  <span class="m-2"><%= @post.category.name %></span>
+  <%= "<span class='m-2'>#{@post.category.name}</span>".html_safe unless @post.category.nil? %>
 </div>
 <h3><%= @post.name %></h3>
 <% if @post.min_fee.present? || @post.max_fee.present? %>
   <div class="m-2">
     <% if @post.min_fee.present? %>
-      ￥<%= @post.min_fee %>
+      &yen; <%= @post.min_fee %>
     <% end %>
      ~
     <% if @post.max_fee.present? %>
@@ -22,7 +22,7 @@
 <% end %>
 <h4><%= @post.title %></h4>
 <div><%= @post.introduction %></div>
-<div class="m-4 w-25 slider">
+<div class="m-4 w-25<%= " slider" if @post.images.count >= 2 %>">
   <% @post.images.each do |image| %>
     <div class="border d-flex justify-content-center align-items-center">
       <%= image_tag image, class: "img-fluid", size: "240x130" %>

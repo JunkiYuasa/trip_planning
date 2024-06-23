@@ -4,11 +4,16 @@ class Public::PostsController < ApplicationController
   end
 
   def new
-    @post = Post.new
-    @purpose = Purpose.find(params[:purpose_id])
-    @categories = @purpose.categories
-    @feature_genres = FeatureGenre.all
-    @features = @purpose.features  #subjectで選択した目的idを持つ特徴を表示
+    if params[:purpose_id].present?
+      @post = Post.new
+      @purpose = Purpose.find(params[:purpose_id])
+      @categories = @purpose.categories
+      @feature_genres = FeatureGenre.all
+      @features = @purpose.features  #subjectで選択した目的idを持つ特徴を表示
+    else
+      flash[:alert] = "目的を選択してください"
+      redirect_to post_subject_path
+    end
   end
 
   def create
@@ -18,26 +23,26 @@ class Public::PostsController < ApplicationController
       flash[:notice] = "投稿しました"
       redirect_to posts_path
     else
-      @purpose = Purpose.find(params[:purpose_id])
+      @purpose = Purpose.find(params[:post][:purpose_id])
       @categories = @purpose.categories
       @feature_genres = FeatureGenre.all
-      @features = @purpose.feature
+      @features = @purpose.features
       render :new
     end
   end
 
   def index
-    @posts = Post.all.order(created_at: :desc)
+    @posts = Post.all.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def show
     @post = Post.find(params[:id])
     @comment = Comment.new
-    @comments = @post.comments
+    @comments = @post.comments.order(created_at: :desc).page(params[:page]).per(50)
 
-    #findメソッドが見つからなかった場合、下記の例外処理を行う
-    rescue ActiveRecord::RecordNotFound
-      redirect_to not_exist_posts_path
+  #指定の投稿が見つからなかった場合、下記の例外処理を行う
+  rescue ActiveRecord::RecordNotFound
+    redirect_to not_exist_posts_path
   end
 
   def edit

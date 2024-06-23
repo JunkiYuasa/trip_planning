@@ -4,17 +4,17 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.order(created_at: :desc)
+    @posts = @user.posts.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def index
     @word = params[:word]
     if @word.present?
       @heading = "ユーザー一覧<br>「#{@word}」の検索結果"
-      @users = User.where("name like ?", "%#{@word}%")
+      @users = User.where("name like ?", "%#{@word}%").order_by_followers.page(params[:page]).per(50)
     else
       @heading = "ユーザー一覧"
-      @users = User.all
+      @users = User.order_by_followers.page(params[:page]).per(50)
     end
   end
 

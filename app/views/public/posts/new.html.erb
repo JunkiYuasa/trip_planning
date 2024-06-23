@@ -67,19 +67,28 @@
 
   <div class="m-3">
     <h4>特徴（複数選択可）</h4>
-    <% @feature_genres.each do |feature_genre| %>
-      <div class="mb-2">
-        <div class="m-1"><%= feature_genre.name %></div>
-        <div class="field">
-          <% feature_genre.features.each do |feature| %>
-            <% if feature.purposes.pluck(:id).include?(@purpose.id) %>
-              <%= check_box_tag "post[feature_ids][]", feature.id, false, id: "feature_#{feature.id}" %>
-              <%= feature.name %><br>
-            <% end %>
-          <% end %>
+    <div>
+      <% @feature_genres.each do |feature_genre| %>
+        <div class="py-2 d-flex align-items-center feature-genre">
+          <strong class="feature-genre-name">
+            <i class="toggle-icon fas fa-chevron-right"></i>
+            <%= feature_genre.name %>
+          </strong>
         </div>
-      </div>
-    <% end %>
+        <div class="features" style="display: none;">
+          <div class="d-flex flex-wrap">
+            <% feature_genre.features.each do |feature| %>
+              <% if feature.purposes.pluck(:id).include?(@purpose.id) %>
+                <div class="m-2">
+                  <%= check_box_tag "post[feature_ids][]", feature.id, false, id: "feature_#{feature.id}" %>
+                  <%= feature.name %><br>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
 
   <div class="m-3">

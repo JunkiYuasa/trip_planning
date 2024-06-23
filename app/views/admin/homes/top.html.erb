@@ -49,19 +49,19 @@
       </div>
       <div class="features" style="display: none;">
         <div class="d-flex flex-wrap">
-        <% feature_genre.features.each do |feature| %>
-          <% if @purpose.present? %>
-            <% if feature.purposes.pluck(:id).include?(@purpose.id) %>
+          <% feature_genre.features.each do |feature| %>
+            <% if @purpose.present? %>
+              <% if feature.purposes.pluck(:id).include?(@purpose.id) %>
+                <div class="m-2">
+                  <%= link_to feature.name, edit_admin_feature_path(feature) %>
+                </div>
+              <% end %>
+            <% else %>
               <div class="m-2">
                 <%= link_to feature.name, edit_admin_feature_path(feature) %>
               </div>
             <% end %>
-          <% else %>
-            <div class="m-2">
-              <%= link_to feature.name, edit_admin_feature_path(feature) %>
-            </div>
           <% end %>
-        <% end %>
         </div>
       </div>
     <% end %>

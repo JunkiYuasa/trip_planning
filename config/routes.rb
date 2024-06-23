@@ -34,7 +34,7 @@ Rails.application.routes.draw do
       resource :favorites, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]
     end
-    get "followings_posts", to: "relationships#followings_posts"
+    get "/followings_posts", to: "relationships#followings_posts"
     get "/favorite_posts", to: "favorites#favorite_posts"
 
     resources :plans

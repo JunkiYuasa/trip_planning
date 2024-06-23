@@ -36,6 +36,13 @@ class User < ApplicationRecord
   def following?(user)
     followings.include?(user)
   end
+  
+  # ユーザーをフォロワー数順に並び替え
+  scope :order_by_followers, -> { 
+    left_joins(:passive_relationships)
+    .group(:id)
+    .order('COUNT(relationships.id) DESC')
+  }
 
   # ゲストログイン用アカウント情報
   GUEST_USER_EMAIL = "guest@example.com"
