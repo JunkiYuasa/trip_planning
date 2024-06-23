@@ -1,0 +1,10 @@
+<h1>スケジュール</h1>
+
+<script>
+  let planData = <%= raw @plans.to_json %>;
+</script>
+
+<%= link_to "プラン作成", new_plan_path, data: { turbolinks: false } %>
+<%= link_to "プランジャンル", plan_genres_path %>
+
+<div id="calendar"></div>

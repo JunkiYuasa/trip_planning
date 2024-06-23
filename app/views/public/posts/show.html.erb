@@ -1,18 +1,18 @@
 <h1>投稿詳細</h1>
-
+<%= flash[:alert] %>
 <div>
   <%= link_to user_path(@post.user) do %>
-    <%= render "icon", user: @post.user, size: "50x50" %>
+    <%= render "public/users/icon", user: @post.user, size: "50x50" %>
     <%= @post.user.name %>
   <% end %>
   <span class="m-2"><%= @post.purpose.name %></span>
-  <span class="m-2"><%= @post.category.name %></span>
+  <%= "<span class='m-2'>#{@post.category.name}</span>".html_safe unless @post.category.nil? %>
 </div>
 <h3><%= @post.name %></h3>
 <% if @post.min_fee.present? || @post.max_fee.present? %>
   <div class="m-2">
     <% if @post.min_fee.present? %>
-      ￥<%= @post.min_fee %>
+      &yen; <%= @post.min_fee %>
     <% end %>
      ~
     <% if @post.max_fee.present? %>
@@ -22,10 +22,10 @@
 <% end %>
 <h4><%= @post.title %></h4>
 <div><%= @post.introduction %></div>
-<div class="m-2">
+<div class="m-4 w-25<%= " slider" if @post.images.count >= 2 %>">
   <% @post.images.each do |image| %>
-    <div class="m-2 w-25 border">
-      <%= image_tag image, size: "320x180" %>
+    <div class="border d-flex justify-content-center align-items-center">
+      <%= image_tag image, class: "img-fluid", size: "240x130" %>
     </div>
   <% end %>
 </div>
@@ -43,13 +43,21 @@
 <% end %>
 <% if @post.user == current_user || admin_signed_in? %>
   <div class="mx-4 my-2"><%= link_to "編集", edit_post_path(@post), class: "btn btn-success" %></div>
+  <div class="mx-4 my-2"><%= link_to "削除", post_path(@post), method: :delete, data: { confirm: "本当に削除しますか？"} , class: "btn btn-danger"%></div>
 <% end %>
 <div class="d-flex p-2">
-  <div class="mx-4 favorite_btn">
+  <div class="mx-4 favorite_btn_<%= @post.id %>">
     <%= render "public/favorites/btn", post: @post %>
   </div>
   <div class="mx-4">
-    P
+    <%= form_with url: new_plan_path, method: :get do |f| %>
+      <%= hidden_field_tag "plan[name]", @post.name %>
+      <%= hidden_field_tag "plan[plan_genre_id]", PlanGenre.find_by(name: @post.purpose.name)&.id %>
+      <%= hidden_field_tag "plan[address]", @post.address %>
+      <%= hidden_field_tag "plan[post_url]", request.original_url %>
+      <%= hidden_field_tag "plan[site_url]", @post.site_url %>
+      <%= f.submit "プラン作成" %>
+    <% end %>
   </div>
   <div class="mx-4">
     <%= @post.comments.count %>コメント

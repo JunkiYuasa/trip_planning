@@ -5,12 +5,16 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+admin_user = User.create!(name: 'とりぷら', email: 'tripla@example.com', password: "ojunjun")
 
-Admin.create!(
-  email: "tripla@0726",
-  password: "ojunjun"
-)
+Admin.create!(email: "tripla@example.com", password: "ojunjun")
 
 Purpose.create!(name: "食事")
 Purpose.create!(name: "観光")
 Purpose.create!(name: "宿泊")
+
+# default: trueにすることで編集と削除を出来ないようにする
+PlanGenre.create!(user_id: admin_user.id, name: "未分類", color: "#000000", standard: true) # 黒
+PlanGenre.create!(user_id: admin_user.id, name: '食事', color: '#FFA500', standard: true)   # オレンジ
+PlanGenre.create!(user_id: admin_user.id, name: '観光', color: '#FFFF00', standard: true)   # 黄色
+PlanGenre.create!(user_id: admin_user.id, name: '宿泊', color: '#008000', standard: true)   # 緑

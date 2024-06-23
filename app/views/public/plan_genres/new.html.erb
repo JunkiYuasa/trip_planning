@@ -1,0 +1,34 @@
+<h1>プランジャンル作成</h1>
+
+<% if @plan_genre.errors.any? %>
+  <div class="message">
+    <%= @plan_genre.errors.count %>errors prohibited this obj from being saved:
+    <ul>
+      <% @plan_genre.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with model: @plan_genre do |f| %>
+  <div class="field">
+    <%= f.label :ジャンル名 %>
+    <%= f.text_field :name %>
+  </div>
+
+
+  <div class="field">
+    <%= f.label :色 %>
+    <% PlanGenre::COLORS.each do |name, hex| %>
+      <div style="display: flex; align-items: center;">
+        <%= f.radio_button :color, hex, id: "color_#{name}" %>
+        <label for="color_<%= name %>" style="background-color: <%= hex %>; width: 20px; height: 20px; display: inline-block; margin-left: 5px; border: 1px solid #000;"></label>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "作成" %>
+  </div>
+<% end %>

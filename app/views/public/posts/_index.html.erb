@@ -1,23 +1,25 @@
 <% if posts.present? %>
 
   <% posts.each do |post| %>
-    <div class="m-2 p-3 border w-25 shadow">
+    <div class="m-2 p-3 border w-75 shadow">
       <%= link_to user_path(post.user) do %>
         <div>
-          <%= render "icon", user: post.user, size: "40x40" %>
+          <%= render "public/users/icon", user: post.user, size: "40x40" %>
           <%= post.user.name %>
         </div>
       <% end %>
       <%= link_to post_path(post) do %>
         <h4><%= post.title %></h4>
         <span><%= post.purpose.name %></span>
-        <span><%= post.category.name %></span>
-        <div class="m-2">
-          <% post.images.each do |image| %>
-            <%= image_tag image, size: "100x100" %>
-          <% end %>
-        </div>
+        <%= "<span>#{post.category.name}</span>".html_safe unless post.category.nil? %>
       <% end %>
+      <div class="m-4 w-50<%= " slider" if post.images.count >= 2 %>">
+        <% post.images.each do |image| %>
+          <div class="border d-flex justify-content-center align-items-center">
+            <%= image_tag image, class: "img-fluid", size: "240x130" %>
+          </div>
+        <% end %>
+      </div>
       <div class="d-flex p-2">
         <div class="mx-4 favorite_btn_<%= post.id %>">
           <%= render "public/favorites/btn", post: post %>
@@ -29,3 +31,5 @@
 <% else %>
   <p>投稿がありません</p>
 <% end %>
+
+<%= paginate posts %>

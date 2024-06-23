@@ -1,27 +1,27 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_guest_user, only: [:edit]
-  
+
   def show
     @user = User.find(params[:id])
-    @user.posts.order(created_at: :desc)
+    @posts = @user.posts.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def index
     @word = params[:word]
     if @word.present?
       @heading = "ユーザー一覧<br>「#{@word}」の検索結果"
-      @users = User.where("name like ?", "%#{@word}%")
+      @users = User.where("name like ?", "%#{@word}%").order_by_followers.page(params[:page]).per(50)
     else
       @heading = "ユーザー一覧"
-      @users = User.all
+      @users = User.order_by_followers.page(params[:page]).per(50)
     end
   end
 
   def edit
     @user = User.find(params[:id])
   end
-  
+
   def update
     user = User.find(params[:id])
     if user.update(user_params)
@@ -31,18 +31,29 @@ class Public::UsersController < ApplicationController
       render :edit
     end
   end
-    
+
+  def withdrawal
+    @user = User.find(params[:id])
+  end
+
+  def destroy
+    @user = User.find(params[:id])
+    if @user.destroy
+      flash[:notice] = "アカウントを削除しました"
+      redirect_to root_path
+    end
+  end
   private
-  
+
   def user_params
     params.require(:user).permit(:name, :email, :image, :introduction)
   end
-  
+
   def ensure_guest_user
     @user = User.find(params[:id])
     if @user.guest_user?
       redirect_to user_path(current_user) , notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
     end
-  end  
-  
+  end
+
 end

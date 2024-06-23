@@ -1,10 +1,11 @@
 <h1 class="my-4">投稿作成</h1>
+<%= flash[:alert] %>
 
 <%= form_with url: new_post_path, method: :get do |f| %>
   <div class="m-3">
     <h4>目的</h4>
     <div class="field d-flex">
-      <%= f.collection_radio_buttons :purpose_id, @purposes, :id, :name do |purpose| %>
+      <%= f.collection_radio_buttons :purpose_id, @purposes, :id, :name, {include_hidden: false} do |purpose| %>
         <div class="mx-3">
           <%= purpose.radio_button %>
           <%= purpose.label %>

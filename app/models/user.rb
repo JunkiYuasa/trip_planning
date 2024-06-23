@@ -3,11 +3,11 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  
+
   has_many :posts, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :comments, dependent: :destroy
-  
+
   # フォローする際の関連付け
   has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   # フォローされる際の関連付け
@@ -16,24 +16,34 @@ class User < ApplicationRecord
   has_many :followings, through: :active_relationships, source: :followed
   # フォロワーを取得
   has_many :followers, through: :passive_relationships, source: :follower
-  
+
+  has_many :plan_genres, dependent: :destroy
+  has_many :plans, dependent: :destroy
+
   has_one_attached :image
-  
+
   # 指定したユーザーをフォローする
   def follow(user)
     active_relationships.create(followed_id: user.id)
   end
-  
+
   # 指定したユーザーのフォローを解除する
   def unfollow(user)
     active_relationships.find_by(followed_id: user.id).destroy
   end
-  
+
   # 指定したユーザーをフォローしているかどうかを判定
   def following?(user)
     followings.include?(user)
   end
   
+  # ユーザーをフォロワー数順に並び替え
+  scope :order_by_followers, -> { 
+    left_joins(:passive_relationships)
+    .group(:id)
+    .order('COUNT(relationships.id) DESC')
+  }
+
   # ゲストログイン用アカウント情報
   GUEST_USER_EMAIL = "guest@example.com"
 
@@ -43,10 +53,10 @@ class User < ApplicationRecord
       user.name = "ゲスト"
     end
   end
-  
+
   # ゲストユーザーかどうかを判定
   def guest_user?
     email == GUEST_USER_EMAIL
   end
-  
+
 end
