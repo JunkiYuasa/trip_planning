@@ -8,7 +8,7 @@
     </div>
     <% if @post.user == current_user || admin_signed_in? %>
       <div class="post-edit p-2 d-flex align-items-center position-absolute">
-        <div class="m-2 btn"><%= link_to "編集", edit_post_path(@post), class: "btn btn-success" %></div>
+        <div class="m-2 btn"><%= link_to "編集", edit_post_path(@post), data: { turbolinks: false }, class: "btn btn-success" %></div>
         <div class="m-2 btn"><%= link_to "削除", post_path(@post), method: :delete, data: { confirm: "本当に削除しますか？"} , class: "btn btn-danger"%></div>
       </div>
     <% end %>
