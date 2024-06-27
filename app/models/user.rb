@@ -22,6 +22,9 @@ class User < ApplicationRecord
 
   has_one_attached :image
 
+  validates :name, presence: true, length: { minimum: 2, maximum: 20 }
+  validates :introduction, length: { maximum: 100 }
+
   # 指定したユーザーをフォローする
   def follow(user)
     active_relationships.create(followed_id: user.id)
@@ -36,9 +39,9 @@ class User < ApplicationRecord
   def following?(user)
     followings.include?(user)
   end
-  
+
   # ユーザーをフォロワー数順に並び替え
-  scope :order_by_followers, -> { 
+  scope :order_by_followers, -> {
     left_joins(:passive_relationships)
     .group(:id)
     .order('COUNT(relationships.id) DESC')

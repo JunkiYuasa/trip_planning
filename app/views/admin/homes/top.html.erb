@@ -1,30 +1,34 @@
-<%= flash[:notice] %>
-<div class="d-flex">
-  <div class="p-1 mx-3">
-    <%= link_to "カテゴリー作成", new_admin_category_path %>
-  </div>
-  <div class="p-1 mx-3">
-    <%= link_to "特徴ジャンル作成", new_admin_feature_genre_path %>
-  </div>
-  <div class="p-1 mx-3">
-    <%= link_to "特徴作成", new_admin_feature_path %>
-  </div>
-</div>
-
-<!--目的別の絞り込み選択-->
-<div class="d-flex flex-wrap">
-  <div class="p-1 m-2">
-    <%= link_to "すべて", admin_path %>
-  </div>
-  <% @purposes.each do |purpose| %>
-    <div class="p-1 m-2">
-      <%= link_to purpose.name, admin_path(purpose_id: purpose.id) %>
+<div class="d-flex flex-column align-items-center" data-turbolinks="false">
+  <div class="d-flex">
+    <div class="btn p-1 mx-3">
+      <%= link_to "カテゴリー作成", new_admin_category_path, class: "btn btn-secondary" %>
     </div>
-  <% end %>
+    <div class="btn p-1 mx-3">
+      <%= link_to "特徴ジャンル作成", new_admin_feature_genre_path, class: "btn btn-secondary" %>
+    </div>
+    <div class="btn p-1 mx-3">
+      <%= link_to "特徴作成", new_admin_feature_path, class: "btn btn-secondary" %>
+    </div>
+  </div>
+
+  <h1 class="m-4"><%= @title %></h1>
+
+  <!--目的別の絞り込み選択-->
+  <div class="d-flex align-items-center">
+    <div class="link p-1 m-2 font-weight-bold">
+      <%= link_to "すべて", admin_path, data: { turbolinks: false } %>
+    </div>
+    <% @purposes.each do |purpose| %>
+      /
+      <div class="link p-1 m-2 font-weight-bold">
+        <%= link_to purpose.name, admin_path(purpose_id: purpose.id), data: { turbolinks: false } %>
+      </div>
+    <% end %>
+  </div>
 </div>
 
-<div class="m-2">
-  <h2>カテゴリー一覧</h2>
+<div class="m-4">
+  <h4 class="font-weight-bold">カテゴリー一覧</h4>
   <div class="d-flex flex-wrap">
     <% @categories.each do |category| %>
       <div class="p-1 m-2">
@@ -34,8 +38,8 @@
   </div>
 </div>
 
-<div class="m-2">
-  <h2>特徴一覧</h2>
+<div class="m-4">
+  <h4 class="font-weight-bold">特徴一覧</h4>
   <div>
     <% @feature_genres.each do |feature_genre| %>
       <div class="py-2 d-flex align-items-center feature-genre">
@@ -43,7 +47,7 @@
           <i class="toggle-icon fas fa-chevron-right"></i>
           <%= feature_genre.name %>
         </strong>
-        <div class="mx-3">
+        <div class="btn mx-3">
           <%= link_to "編集", edit_admin_feature_genre_path(feature_genre), class: "btn btn-success" %>
         </div>
       </div>

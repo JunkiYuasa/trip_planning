@@ -1,19 +1,23 @@
-<h1>プランジャンル一覧</h1>
-<table>
-  <tbody>
-    <% @plan_genres.each do |plan_genre| %>
-      <tr>
-        <td style="background-color:<%= plan_genre.color %>;"></td>
-        <td><%= plan_genre.name %></td>
-        <td>
-          <% unless plan_genre.standard %>
-            <%= link_to '編集', edit_plan_genre_path(plan_genre) %>
-            <%= link_to '削除', plan_genre_path(plan_genre), method: :delete, data: { confirm: 'Are you sure?' } %>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<h1 class="m-4 text-center">プランジャンル一覧</h1>
+<div class="btn d-flex justify-content-center">
+  <%= link_to "新規作成", new_plan_genre_path, class: "btn btn-info" %>
+</div>
+<div class="w-50 mx-auto">
+  <% @plan_genres.each do |plan_genre| %>
+    <div class="m-2 d-flex align-items-center">
+      <div style="width: 20px; height: 20px; border-radius: 50%; background-color: <%= plan_genre.color %>;" class="mr-2"></div>
+      <div class="p-2"><%= plan_genre.name %></div>
+      <% unless plan_genre.standard %>
+        <div class="d-flex">
+          <div class="btn ml-3">
+            <%= link_to '編集', edit_plan_genre_path(plan_genre), class: "btn btn-sm btn-success" %>
+          </div>
+          <div class="btn">
+            <%= link_to '削除', plan_genre_path(plan_genre), method: :delete, data: { confirm: '本当に削除してよろしいですか？' }, class: "btn btn-sm btn-danger" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
 
-<%= link_to "新規作成", new_plan_genre_path %>

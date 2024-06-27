@@ -13,6 +13,12 @@ class Post < ApplicationRecord
   #画像の複数枚投稿を可能に
   has_many_attached :images
 
+  validates :purpose_id, presence: true
+  validates :name, presence: true
+  validates :title, presence: true, length: { maximum: 30 }
+  validates :introduction, length: { maximum: 400 }
+  validates :address, length: { maximum: 60 }
+
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end

@@ -12,8 +12,8 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body style="background-color: #F0FFF4">
-    <header class="fixed-top w-100 d-flex justify-content-center align-items-center" style="background-color: #16E516; z-index: 1030;">
+  <body>
+    <header class="fixed-top w-100 d-flex justify-content-center align-items-center">
       <a href="/about" class="text-light" style="text-decoration: none; cursor: default;">
         <h3 class="pt-2 pb-1 text-center font-italic">とりぷら！-Trip Planning-</h3>
       </a>
@@ -23,43 +23,43 @@
         <div class="menu container px-5 px-sm-0">
           <div class="row">
             <div class="py-4 col-lg-2 col-1 border-right position-fixed d-flex flex-column ustify-content-start" style="height: 100vh; overflow-y: auto;">
-              <div class="mt-4">
+              <div class="menu mt-4">
                 <%= link_to posts_path do %>
                   <h4 class="d-none d-lg-block"><i class="fa-regular fa-image mr-3"></i>投稿一覧</h4>
                   <h4 class="d-block d-lg-none"><i class="fa-regular fa-image"></i></h4>
                 <% end %>
               </div>
-              <div class="mt-4">
+              <div class="menu mt-4">
                 <%= link_to search_subject_path do %>
                   <h4 class="d-none d-lg-block"><i class="fa-solid fa-magnifying-glass mr-3"></i>投稿検索</h4>
                   <h4 class="d-block d-lg-none"><i class="fa-solid fa-magnifying-glass"></i></h4>
                 <% end %>
               </div>
-              <div class="mt-4">
+              <div class="menu mt-4">
                 <%= link_to subject_posts_path do %>
                   <h4 class="d-none d-lg-block"><i class="fa-solid fa-square-plus mr-3"></i>投稿する</h4>
                   <h4 class="d-block d-lg-none"><i class="fa-solid fa-square-plus"></i></h4>
                 <% end %>
               </div>
-              <div class="mt-4">
+              <div class="menu mt-4">
                 <%= link_to plans_path, data: { turbolinks: false } do %>
                   <h4 class="d-none d-lg-block"><i class="fa-regular fa-calendar mr-3"></i>カレンダー</h4>
                   <h4 class="d-block d-lg-none"><i class="fa-regular fa-calendar"></i></h4>
                 <% end %>
               </div>
-              <div class="mt-4">
+              <div class="menu mt-4">
                 <%= link_to users_path do %>
                   <h4 class="d-none d-lg-block"><i class="fa-solid fa-users mr-3"></i>ユーザー</h4>
                   <h4 class="d-block d-lg-none"><i class="fa-solid fa-users"></i></h4>
                 <% end %>
               </div>
-              <div class="mt-4">
+              <div class="menu mt-4">
                 <%= link_to user_path(current_user) do %>
                   <h4 class="d-none d-lg-block"><i class="fa-solid fa-house mr-3"></i>マイページ</h4>
                   <h4 class="d-block d-lg-none"><i class="fa-solid fa-house"></i></h4>
                 <% end %>
               </div>
-              <div class="mt-4">
+              <div class="menu mt-4">
                 <%= link_to destroy_user_session_path, method: :delete do %>
                   <h4 class="d-none d-lg-block"><i class="fa-solid fa-right-from-bracket mr-3"></i>ログアウト</h4>
                   <h4 class="d-block d-lg-none"><i class="fa-solid fa-right-from-bracket"></i></h4>
@@ -67,33 +67,40 @@
               </div>
             </div>
             <div class='col-lg-9 offset-lg-3 col-md-8 offset-md-4 col-10 offset-2'>
+              <%= render "layouts/flash_message" %>
               <%= yield %>
             </div>
           </div>
         </div>
       <% elsif admin_signed_in? %>
-        <div class="menu container px-5 px-sm-0">
+        <div class="container px-3 px-sm-0">
           <div class="row">
             <div class="py-4 col-lg-2 col-1 border-right position-fixed d-flex flex-column ustify-content-start" style="height: 100vh; overflow-y: auto;">
-              <div class="mt-4">
+              <div class="menu mt-4">
                 <%= link_to posts_path do %>
                   <h4 class="d-none d-lg-block"><i class="fa-regular fa-image mr-3"></i>投稿一覧</h4>
                   <h4 class="d-block d-lg-none"><i class="fa-regular fa-image"></i></h4>
                 <% end %>
               </div>
-              <div class="mt-4">
+              <div class="menu mt-4">
                 <%= link_to search_subject_path do %>
                   <h4 class="d-none d-lg-block"><i class="fa-solid fa-magnifying-glass mr-3"></i>投稿検索</h4>
                   <h4 class="d-block d-lg-none"><i class="fa-solid fa-magnifying-glass"></i></h4>
                 <% end %>
               </div>
-              <div class="mt-4">
+              <div class="menu mt-4">
                 <%= link_to users_path do %>
                   <h4 class="d-none d-lg-block"><i class="fa-solid fa-users mr-3"></i>ユーザー</h4>
                   <h4 class="d-block d-lg-none"><i class="fa-solid fa-users"></i></h4>
                 <% end %>
               </div>
-              <div class="mt-4">
+              <div class="menu mt-4">
+                <%= link_to admin_path, data: { turbolinks: false } do %>
+                  <h4 class="d-none d-lg-block"><i class="fa-solid fa-house mr-3"></i>HOME</h4>
+                  <h4 class="d-block d-lg-none"><i class="fa-solid fa-house"></i></h4>
+                <% end %>
+              </div>
+              <div class="menu mt-4">
                 <%= link_to destroy_user_session_path, method: :delete do %>
                   <h4 class="d-none d-lg-block"><i class="fa-solid fa-right-from-bracket mr-3"></i>ログアウト</h4>
                   <h4 class="d-block d-lg-none"><i class="fa-solid fa-right-from-bracket"></i></h4>
@@ -101,11 +108,13 @@
               </div>
             </div>
             <div class='col-lg-9 offset-lg-3 col-11 offset-1'>
+              <%= render "layouts/flash_message" %>
               <%= yield %>
             </div>
           </div>
         </div>
       <% else %>
+        <div class="w-50 mx-auto my-3"><%= render "layouts/flash_message" %></div>
         <%= yield %>
       <% end %>
     </main>

@@ -1,20 +1,30 @@
-<div class="py-1"><%= flash[:notice] %></div>
+<div class="container text-center">
 
-<div>
-  <%= render "icon", user: @user, size: "150x150" %>
-</div>
-<h2><%= @user.name %></h2>
-<div class="d-flex relationships_number_<%= @user.id %>">
-  <%= render "public/relationships/number", user: @user %>
-</div>
-<div class="py-3"><%= @user.introduction %></div>
-<% if (@user == current_user && !@user.guest_user?) || admin_signed_in? %>
-  <div class="mx-4 my-2">
-    <%= link_to "編集", edit_user_path(@user), class: "btn btn-success" %>
+  <div class="m-2">
+    <%= render "icon", user: @user, image_class: "user-show-icon img-fluid rounded-circle" %>
   </div>
-<% else %>
-  <div class="mx-4 my-2 follow_btn_<%= @user.id %>">
-    <%= render "public/relationships/btn", user: @user %>
+
+  <h3><%= @user.name %></h3>
+
+  <div class="relationships_number_<%= @user.id %>">
+    <%= render "public/relationships/number", user: @user %>
   </div>
-<% end %>
-<%= render "public/posts/index", posts: @posts %>
+
+  <div class="py-3 mx-auto w-75"><%= @user.introduction %></div>
+
+  <div class="py-3 d-flex justify-content-center">
+    <% if (@user == current_user && !@user.guest_user?) || admin_signed_in? %>
+      <div class="btn my-2">
+        <%= link_to "編集", edit_user_path(@user), data: { turbolinks: false }, class: "btn btn-success" %>
+      </div>
+    <% else %>
+      <div class="my-2 follow_btn_<%= @user.id %>">
+        <%= render "public/relationships/btn", user: @user %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+  <div class="py-3">
+    <%= render "public/posts/index", posts: @posts %>
+  </div>

@@ -38,6 +38,16 @@ $(document).ready(function() {
   });
 });
 
+// 投稿画像の変更の際のフォームの表示
+$(document).ready(function() {
+  $('.image-change').on('click', function() {
+    // アイコンの切り替え
+    $(this).find('.toggle-icon').toggleClass('fa-chevron-right fa-chevron-down');
+    // .features をトグル（表示・非表示）する
+    $(this).closest('.images').next('.image-form').slideToggle();
+  });
+});
+
 //投稿時、1枚ずつ画像の追加と削除を出来るようにする
 $(document).on('turbolinks:load', function() {
   $('#add-image-field').on('click', function() {
@@ -98,4 +108,3 @@ document.addEventListener('DOMContentLoaded', () => {
     time_24hr: true
   });
 });
-

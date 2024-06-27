@@ -16,7 +16,7 @@ class Public::PlansController < ApplicationController
     if @plan.save
       flash[:notice] = "プランを作成しました"
       response.headers['Turbolinks-Location'] = plans_path
-      redirect_to plans_path
+      redirect_to plan_path(@plan)
     else
       @plan_genres = PlanGenre.where('standard = ? OR user_id = ?', true, current_user.id)
       @default_plan_genre = PlanGenre.find_by(name: '未分類')
@@ -34,25 +34,42 @@ class Public::PlansController < ApplicationController
   end
 
   def show
+    plan = Plan.find(params[:id])
+    unless plan.user.id == current_user.id
+      redirect_to plans_path
+    end
     @plan = Plan.find(params[:id])
   end
 
   def edit
+    plan = Plan.find(params[:id])
+    unless plan.user.id == current_user.id
+      redirect_to plans_path
+    end
     @plan = Plan.find(params[:id])
     @plan_genres = PlanGenre.where('standard = ? OR user_id = ?', true, current_user.id)
   end
 
   def update
+    plan = Plan.find(params[:id])
+    unless plan.user.id == current_user.id
+      redirect_to plans_path
+    end
     @plan = Plan.find(params[:id])
     if @plan.update(plan_params)
       flash[:notice] = "プランを変更しました"
       redirect_to plan_path(@plan)
     else
+      @plan_genres = PlanGenre.where('standard = ? OR user_id = ?', true, current_user.id)
       render :edit
     end
   end
 
   def destroy
+    plan = Plan.find(params[:id])
+    unless plan.user.id == current_user.id
+      redirect_to plans_path
+    end
     @plan = Plan.find(params[:id])
     @plan.destroy
     flash[:notice] = "プランを削除しました"

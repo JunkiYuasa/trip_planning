@@ -1,3 +1,14 @@
-<h1>投稿検索結果</h1>
-
+<h1 class="m-4 text-center">投稿検索結果</h1>
+<div class="w-100 p-3 mb-4 border">
+  <h4 class="mt-2 mx-3 font-weight-bold">検索条件</h2>
+  <ul>
+    <li>目的: <%= @conditions[:purpose] %></li>
+    <li>カテゴリー: <%= @conditions[:category_ids] %></li>
+    <li>施設名: <%= @conditions[:name] %></li>
+    <li>住所: <%= @conditions[:address] %></li>
+    <li>予算下限: <%= @conditions[:over] %></li>
+    <li>予算上限: <%= @conditions[:under] %></li>
+    <li>特徴: <%= @conditions[:feature_ids] %></li>
+  </ul>
+</div>
 <%= render "public/posts/index", posts: @posts %>

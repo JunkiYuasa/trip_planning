@@ -41,12 +41,12 @@ class Public::RegistrationsController < Devise::RegistrationsController
   protected
 
   # If you have extra params to permit, append them to the sanitizer.
-  
+
   #新規登録時のnameカラムの受け取り許可
-  def configure_sign_up_params 
+  def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up, keys:[:name])
   end
-  
+
   # def configure_sign_up_params
   #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
   # end
