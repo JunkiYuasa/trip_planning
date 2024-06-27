@@ -8,8 +8,8 @@ class Feature < ApplicationRecord
   #投稿との関連付け
   has_many :post_features, dependent: :destroy
   has_many :features, through: :post_features
-  
-  
+
+
   validates :feature_genre_id, presence: true
   validates :name, presence: true, length: { maximum: 20 }, uniqueness: true
 
