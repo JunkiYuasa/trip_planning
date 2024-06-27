@@ -3,6 +3,16 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  # JavaScriptアセットの圧縮
+  config.assets.js_compressor = :uglifier
+
+  # アセットにダイジェストを付加する
+  config.assets.digest = true
+
+  # 静的ファイルのキャッシュヘッダーを設定する
+  config.public_file_server.headers = {
+    'Cache-Control' => 'public, max-age=31536000'
+  }
   # Code is not reloaded between requests.
   config.cache_classes = true
 
