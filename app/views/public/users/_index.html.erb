@@ -1,36 +1,40 @@
-<h1><%= heading.html_safe %></h1>
-
-<% if users.present? %>
-  <div class="my-4">
-    <%= form_with url: url, method: :get do |f| %>
-      <%= f.text_field :word, placeholder: "ユーザーネーム検索" %>
-      <%= f.submit "検索" %>
-    <% end %>
-  </div>
-
-  <% users.each do |user| %>
-    <div class="m-2 p-3 border w-50 shadow">
-      <div class="d-flex align-items-center">
-        <div>
-          <%= link_to user_path(user) do %>
-            <%= render "public/users/icon", user: user, size: "40x40" %>
-            <%= user.name %>
-          <% end %>
-        </div>
-        <% if user != current_user %>
-          <div class="mx-4 follow_btn_<%= user.id %>">
-            <%= render "public/relationships/btn", user: user %>
-          </div>
-        <% end %>
-      </div>
-      <div class="p-2">
-        <%= user.introduction %>
-      </div>
+<div class="d-flex justify-content-center w-100">
+  <div class="w-75 d-flex flex-column">
+    <h1 class="mx-auto"><%= heading.html_safe %></h1>
+    <div class="mx-auto my-4">
+      <%= form_with url: url, method: :get do |f| %>
+        <%= f.text_field :word, placeholder: "ユーザーネーム検索" %>
+        <%= f.submit "検索" %>
+      <% end %>
     </div>
-  <% end %>
 
-<% else %>
-  <p>ユーザーはいません</p>
-<% end %>
+    <% if users.present? %>
+      <% users.each do |user| %>
+        <div class="mx-auto my-3 p-3 w-100 border shadow">
+          <div class="d-flex align-items-center position-relative font-weight-bold">
+            <div class="p-2">
+              <%= link_to user_path(user) do %>
+                <%= render "public/users/icon", user: user, image_class: "index-icon mr-2 img-fluid rounded-circle" %>
+                <%= user.name %>
+              <% end %>
+            </div>
+            <% if user != current_user %>
+              <div class="follow_btn_<%= user.id %> position-absolute" style="right: 0px;">
+                <%= render "public/relationships/btn", user: user %>
+              </div>
+            <% end %>
+          </div>
+          <div class="p-2">
+            <%= user.introduction %>
+          </div>
+        </div>
+      <% end %>
 
-<%= paginate users %>
+    <% else %>
+      <p>ユーザーはいません</p>
+    <% end %>
+    <div class="mx-auto my-3">
+      <%= paginate users %>
+    </div>
+  </div>
+</div>

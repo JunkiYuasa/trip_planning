@@ -1,4 +1,6 @@
 class Public::PostsController < ApplicationController
+  before_action :authenticate_user_or_admin!
+
   def subject
     @purposes = Purpose.all
   end
@@ -12,7 +14,7 @@ class Public::PostsController < ApplicationController
       @features = @purpose.features  #subjectで選択した目的idを持つ特徴を表示
     else
       flash[:alert] = "目的を選択してください"
-      redirect_to post_subject_path
+      redirect_to subject_posts_path
     end
   end
 
@@ -21,7 +23,7 @@ class Public::PostsController < ApplicationController
     @post.user_id = current_user.id
     if @post.save
       flash[:notice] = "投稿しました"
-      redirect_to posts_path
+      redirect_to post_path(@post)
     else
       @purpose = Purpose.find(params[:post][:purpose_id])
       @categories = @purpose.categories
@@ -46,6 +48,12 @@ class Public::PostsController < ApplicationController
   end
 
   def edit
+    post = Post.find(params[:id])
+    unless admin_signed_in?
+      unless post.user.id == current_user.id
+        redirect_to user_path(current_user)
+      end
+    end
     @post = Post.find(params[:id])
     @purpose = @post.purpose
     @categories = @purpose.categories
@@ -53,21 +61,36 @@ class Public::PostsController < ApplicationController
   end
 
   def update
+    post = Post.find(params[:id])
+    unless admin_signed_in?
+      unless post.user.id == current_user.id
+        redirect_to user_path(current_user)
+      end
+    end
     @post = Post.find(params[:id])
     if @post.update(post_params)
       flash[:notice] = "投稿を変更しました"
       redirect_to post_path(@post)
     else
+      @purpose = Purpose.find(params[:post][:purpose_id])
+      @categories = @purpose.categories
+      @feature_genres = FeatureGenre.all
+      @features = @purpose.features
       render :edit
     end
   end
 
   def destroy
-    @post = Post.find(params[:id])
-    if @post.destroy
-      flash[:notice] = "投稿を削除しました"
-      redirect_to user_path(current_user.id)
+    post = Post.find(params[:id])
+    unless admin_signed_in?
+      unless post.user.id == current_user.id
+        redirect_to user_path(current_user)
+      end
     end
+    @post = Post.find(params[:id])
+    @post.destroy
+    flash[:notice] = "投稿を削除しました"
+    redirect_to posts_path
   end
 
   private

@@ -1,49 +1,67 @@
-<h1>プラン編集</h1>
-
+<h1 class="mt-4 text-center">プラン編集</h1>
 <%= render 'layouts/error_messages', model: @plan %>
 
-<%= form_with model: @plan, local: true do |f| %>
-  <div class="field">
-    <%= f.label :name, "プラン名" %>
-    <%= f.text_field :name, value: @plan.name %>
+<%= form_with model: @plan, local: true, class: 'form-horizontal' do |f| %>
+  <div class="form-group">
+    <%= f.label :name, "プラン名", class: 'col-sm-6 control-label' %>
+    <div class="col-sm-10">
+      <%= f.text_field :name, value: @plan.name, class: 'form-control' %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :start_time, "開始時間" %>
-    <%= f.text_field :start_time, class: 'datepicker' %>
+  <div class="form-group">
+    <%= f.label :start_time, "開始時間", class: 'col-sm-6 control-label' %>
+    <div class="col-sm-10">
+      <%= f.text_field :start_time, class: 'form-control datepicker' %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :end_time, "終了時間" %>
-    <%= f.text_field :end_time, class: 'datepicker' %>
+  <div class="form-group">
+    <%= f.label :end_time, "終了時間", class: 'col-sm-6 control-label' %>
+    <div class="col-sm-10">
+      <%= f.text_field :end_time, class: 'form-control datepicker' %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :plan_genre_id, "プランジャンル" %>
-    <%= f.collection_select :plan_genre_id, @plan_genres, :id, :name, selected: @plan.plan_genre_id %>
+  <div class="form-group">
+    <%= f.label :plan_genre_id, "プランジャンル", class: 'col-sm-6 control-label' %>
+    <div class="col-sm-10">
+      <%= f.collection_select :plan_genre_id, @plan_genres, :id, :name, { selected: @plan.plan_genre_id }, { class: 'form-control' } %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :address, "住所" %>
-    <%= f.text_field :address, value: @plan.address %>
+  <div class="form-group">
+    <%= f.label :address, "住所", class: 'col-sm-6 control-label' %>
+    <div class="col-sm-10">
+      <%= f.text_field :address, value: @plan.address, class: 'form-control' %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :remark, "備考" %>
-    <%= f.text_area :remark %>
+  <div class="form-group">
+    <%= f.label :remark, "備考", class: 'col-sm-6 control-label' %>
+    <div class="col-sm-10">
+      <%= f.text_area :remark, class: 'form-control' %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :post_url, "投稿URL" %>
-    <%= f.text_field :post_url, value: @plan.post_url %>
+  <div class="form-group">
+    <%= f.label :post_url, "投稿URL", class: 'col-sm-6 control-label' %>
+    <div class="col-sm-10">
+      <%= f.text_field :post_url, value: @plan.post_url, class: 'form-control' %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :site_url, "サイトURL" %>
-    <%= f.text_field :site_url, value: @plan.site_url %>
+  <div class="form-group">
+    <%= f.label :site_url, "サイトURL", class: 'col-sm-6 control-label' %>
+    <div class="col-sm-10">
+      <%= f.text_field :site_url, value: @plan.site_url, class: 'form-control' %>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= f.submit "作成" %>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit "更新", class: 'btn btn-success' %>
+    </div>
   </div>
 <% end %>
+

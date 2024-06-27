@@ -2,6 +2,8 @@ ja:
   activerecord:
     attributes:
       user:
+        name: ユーザーネーム
+        introduction: 紹介文
         confirmation_sent_at: パスワード確認送信時刻
         confirmation_token: パスワード確認用トークン
         confirmed_at: パスワード確認時刻
@@ -9,7 +11,7 @@ ja:
         current_password: 現在のパスワード
         current_sign_in_at: 現在のログイン時刻
         current_sign_in_ip: 現在のログインIPアドレス
-        email: Eメール
+        email: メールアドレス
         encrypted_password: 暗号化パスワード
         failed_attempts: 失敗したログイン試行回数
         last_sign_in_at: 最終ログイン時刻
@@ -25,6 +27,37 @@ ja:
         unconfirmed_email: 未確認Eメール
         unlock_token: ロック解除用トークン
         updated_at: 更新日
+      admin:
+        email: メールアドレス
+        remember_me: ログインを記憶する
+      post:
+        title: 投稿タイトル
+        name: 施設名
+        introduction: 本文
+        address: 住所
+      comment:
+        body: コメント文
+      plan:
+        name: プラン名
+        address: 住所
+        remark: 備考
+        start_time: 開始時間
+        end_time: 終了時間
+      plan_genre:
+        name: プランジャンル名
+        color: 色
+      category:
+        purpose: 目的
+        name: カテゴリー名
+      purpose:
+        name: 目的名
+      feature_genre:
+        name: 特徴ジャンル名
+      feature:
+        purpose: 目的
+        feature_genre: 特徴ジャンル名
+        name: 特徴名
+
     models:
       user: ユーザー
   devise:

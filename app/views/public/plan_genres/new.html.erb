@@ -1,34 +1,30 @@
-<h1>プランジャンル作成</h1>
+<h1 class="m-4 text-center">プランジャンル作成</h1>
+<%= render 'layouts/error_messages', model: @plan_genre %>
 
-<% if @plan_genre.errors.any? %>
-  <div class="message">
-    <%= @plan_genre.errors.count %>errors prohibited this obj from being saved:
-    <ul>
-      <% @plan_genre.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+<%= form_with model: @plan_genre, local: true, class: 'form-horizontal' do |f| %>
+  <div class="form-group">
+    <%= f.label :ジャンル名, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= f.text_field :name, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :色, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <% PlanGenre::COLORS.each do |name, hex| %>
+        <div class="form-check form-check-inline" style="margin-bottom: 10px;">
+          <%= f.radio_button :color, hex, id: "color_#{name}", class: 'form-check-input' %>
+          <label for="color_<%= name %>" class="form-check-label" style="background-color: <%= hex %>; width: 20px; height: 20px; display: inline-block; margin-left: 5px; border: 1px solid #000;"></label>
+        </div>
       <% end %>
-    </ul>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit "作成", class: 'btn btn-info' %>
+    </div>
   </div>
 <% end %>
 
-<%= form_with model: @plan_genre do |f| %>
-  <div class="field">
-    <%= f.label :ジャンル名 %>
-    <%= f.text_field :name %>
-  </div>
-
-
-  <div class="field">
-    <%= f.label :色 %>
-    <% PlanGenre::COLORS.each do |name, hex| %>
-      <div style="display: flex; align-items: center;">
-        <%= f.radio_button :color, hex, id: "color_#{name}" %>
-        <label for="color_<%= name %>" style="background-color: <%= hex %>; width: 20px; height: 20px; display: inline-block; margin-left: 5px; border: 1px solid #000;"></label>
-      </div>
-    <% end %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "作成" %>
-  </div>
-<% end %>

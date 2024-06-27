@@ -1,71 +1,74 @@
-<h1 class="my-4">投稿作成</h1>
+<h1 class="m-4 text-center">投稿作成</h1>
+<%= render 'layouts/error_messages', model: @post %>
 
-<%= form_with model: @post do |f| %>
+<%= form_with model: @post, local: true, class: 'form-horizontal' do |f| %>
 
   <%= f.hidden_field :purpose_id, value: @purpose.id %>
 
-  <div class="m-3" id="image-fields">
-    <h4>画像</h4>
-    <div class="field my-2">
-      <%= f.file_field :images, multiple: true, direct_upload: true %>
-      <div class="image-preview"></div>
+  <div class="m-3">
+    <div class="my-2" id="image-fields">
+      <h4>画像</h4>
+      <div class="my-2">
+        <%= f.file_field :images, multiple: true, direct_upload: true %>
+        <div class="image-preview"></div>
+      </div>
+    </div>
+    <div>
+      <button type="button" id="add-image-field" class="btn btn-secondary">追加</button>
     </div>
   </div>
-  <div>
-    <button type="button" id="add-image-field">追加</button>
-  </div>
 
-  <div class="m-3">
+  <div class="form-group m-3">
     <h4>カテゴリー</h4>
-    <div class="field d-flex">
+    <div class="field d-flex flex-wrap">
       <%= f.collection_radio_buttons :category_id, @categories, :id, :name do |category| %>
-        <div class="mx-3">
-          <%= category.radio_button %>
-          <%= category.label %>
+        <div class="mx-3 form-check form-check-inline">
+          <%= category.radio_button class: "form-check-input" %>
+          <%= category.label class: "form-check-label" %>
         </div>
       <% end %>
     </div>
   </div>
 
-  <div class="m-3">
+  <div class="form-group m-3">
     <h4>投稿タイトル(必須)</h4>
     <div class="field">
-      <%= f.text_field :title %>
+      <%= f.text_field :title, class: "form-control" %>
     </div>
   </div>
 
-
-
-  <div class="m-3">
+  <div class="form-group m-3">
     <h4>施設名(必須)</h4>
     <div class="field">
-      <%= f.text_field :name %>
+      <%= f.text_field :name, class: "form-control" %>
     </div>
   </div>
 
-  <div class="m-3">
+  <div class="form-group m-3">
     <h4>本文</h4>
     <div class="field">
-      <%= f.text_area :introduction %>
+      <%= f.text_area :introduction, class: "form-control" %>
     </div>
   </div>
 
-  <div class="m-3">
+  <div class="form-group m-3">
     <h4>住所</h4>
     <div class="field">
-      <%= f.text_field :address %>
+      <%= f.text_field :address, class: "form-control" %>
     </div>
   </div>
 
-  <div class="m-3">
+  <div class="form-group m-3">
     <h4>総額</h4>
-    <div class="field">
-      <%= f.number_field :min_fee, placeholder: "最低額" %>円～<br>
-      <%= f.number_field :max_fee, placeholder: "最高額" %>円
+    <div class="field form-inline">
+      <%= f.number_field :min_fee, placeholder: "最低額", class: "form-control mr-2" %>
+      <span>円～</span>
+      <%= f.number_field :max_fee, placeholder: "最高額", class: "form-control mx-2" %>
+      <span>円</span>
     </div>
   </div>
 
-  <div class="m-3">
+  <div class="form-group m-3">
     <h4>特徴（複数選択可）</h4>
     <div>
       <% @feature_genres.each do |feature_genre| %>
@@ -79,8 +82,8 @@
           <div class="d-flex flex-wrap">
             <% feature_genre.features.each do |feature| %>
               <% if feature.purposes.pluck(:id).include?(@purpose.id) %>
-                <div class="m-2">
-                  <%= check_box_tag "post[feature_ids][]", feature.id, false, id: "feature_#{feature.id}" %>
+                <div class="m-2 form-check form-check-inline">
+                  <%= check_box_tag "post[feature_ids][]", feature.id, false, id: "feature_#{feature.id}", class: "form-check-input" %>
                   <%= feature.name %><br>
                 </div>
               <% end %>
@@ -91,14 +94,16 @@
     </div>
   </div>
 
-  <div class="m-3">
+  <div class="form-group m-3">
     <h4>サイトURL</h4>
     <div class="field">
-      <%= f.text_field :site_url %>
+      <%= f.text_field :site_url, class: "form-control" %>
     </div>
   </div>
 
-  <div class="my-4">
-    <%= f.submit "投稿" %>
+  <div class="form-group my-4">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit "投稿", class: "btn btn-primary" %>
+    </div>
   </div>
 <% end %>

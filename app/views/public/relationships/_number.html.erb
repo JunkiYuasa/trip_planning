@@ -1,6 +1,8 @@
-  <div class="m-3">
+<div class="d-flex justify-content-center">
+  <div class="link m-3">
     <%= link_to "#{user.followings.count}フォロー中", user_followings_path(user) %>
   </div>
-  <div class="m-3">
+  <div class="link m-3">
     <%= link_to "#{user.followers.count}フォロワー", user_followers_path(user) %>
   </div>
+</div>

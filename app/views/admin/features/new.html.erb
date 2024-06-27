@@ -1,32 +1,42 @@
-<h1 class="my-4">特徴作成</h1>
+<div class="w-75 mx-auto">
+  <h1 class="my-4 text-center">特徴作成</h1>
+  <%= render 'layouts/error_messages', model: @feature %>
 
-<%= form_with model: @feature, url: admin_features_path do |f| %>
-  
-  <h4>表示させる投稿（複数選択可）</h4>
-  <div class="field">
-    <% @purposes.each do |purpose| %>
-      <%= check_box_tag "feature[purpose_ids][]", purpose.id, true, id: "purpose_#{purpose.id}" %>
-      <%= purpose.name %><br>
-    <% end %>
-  </div>
-  
-  <h4>特徴ジャンル</h4>
-  <div class="field d-flex">
-    <%= f.collection_radio_buttons :feature_genre_id, @feature_genres, :id, :name do |feature_genre| %>
-      <div class="mx-3">
-        <%= feature_genre.radio_button %>
-        <%= feature_genre.label %>
+  <%= form_with model: @feature, url: admin_features_path do |f| %>
+
+    <div class="form-group m-3">
+      <h4>表示させる投稿（複数選択可）</h4>
+      <div class="d-flex flex-wrap">
+        <% @purposes.each do |purpose| %>
+          <div class="m-2 form-check form-check-inline">
+            <%= check_box_tag "feature[purpose_ids][]", purpose.id, true, id: "purpose_#{purpose.id}", class: 'form-check-input'  %>
+            <%= purpose.name %><br>
+          </div>
+        <% end %>
       </div>
-    <% end %>
-  </div>
-  
-  <h4>特徴名</h4>
-  <div class="field">
-    <%= f.text_field :name %>
-  </div>
+    </div>
 
-  <div class="my-4">
-    <%= f.submit "作成" %>
-  </div>
-<% end %>
+    <div class="form-group m-3">
+      <h4>特徴ジャンル</h4>
+      <div class="field d-flex flex-wrap">
+        <%= f.collection_radio_buttons :feature_genre_id, @feature_genres, :id, :name do |feature_genre| %>
+          <div class="mx-3 form-check form-check-inline">
+            <%= feature_genre.radio_button class: "form-check-input" %>
+            <%= feature_genre.label class: "form-check-label" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
 
+    <div class="form-group m-3">
+      <h4>特徴名</h4>
+      <div class="field">
+        <%= f.text_field :name, class: "form-control"  %>
+      </div>
+    </div>
+
+    <div class="form-group mx-3 my-4">
+      <%= f.submit "作成", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

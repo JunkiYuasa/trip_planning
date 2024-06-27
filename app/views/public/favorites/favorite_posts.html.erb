@@ -1,9 +1,11 @@
-<div class="d-flex">
-  <div class="p-1 mx-3"><%= link_to "すべて", posts_path %></div>
-  <div class="p-1 mx-3"><%= link_to "フォロー中", followings_posts_path %></div>
-  <div class="p-1 mx-3"><%= link_to "いいね", favorite_posts_path %></div>
+<h1 class="m-4 text-center">いいねした投稿</h1>
+  <div class="d-flex justify-content-center">
+    <div class="link mx-3 font-weight-bold"><%= link_to "すべて", posts_path %></div>
+    /
+    <div class="link mx-3 font-weight-bold"><%= link_to "フォロー中", followings_posts_path %></div>
+    /
+    <div class="p-1 mx-3 font-weight-bold">いいね</div>
+  </div>
+<div class="py-3">
+  <%= render "public/posts/index", posts: @posts %>
 </div>
-
-<h1>いいねした投稿</h1>
-
-<%= render "public/posts/index", posts: @posts %>

@@ -1,19 +1,20 @@
-<h1 class="my-4">投稿作成</h1>
-<%= flash[:alert] %>
+<h1 class="m-4 text-center">投稿作成</h1>
 
-<%= form_with url: new_post_path, method: :get do |f| %>
-  <div class="m-3">
+<%= form_with url: new_post_path, method: :get, local: true, class: 'form-horizontal' do |f| %>
+  <div class="form-group m-3">
     <h4>目的</h4>
     <div class="field d-flex">
-      <%= f.collection_radio_buttons :purpose_id, @purposes, :id, :name, {include_hidden: false} do |purpose| %>
-        <div class="mx-3">
-          <%= purpose.radio_button %>
-          <%= purpose.label %>
+      <%= f.collection_radio_buttons :purpose_id, @purposes, :id, :name do |purpose| %>
+        <div class="mx-3 form-check form-check-inline">
+          <%= purpose.radio_button class: "form-check-input" %>
+          <%= purpose.label class: "form-check-label" %>
         </div>
       <% end %>
     </div>
   </div>
-  <div class="my-4">
-    <%= f.submit "次へ" %>
+  <div class="form-group my-4">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit "次へ", class: "btn btn-secondary" %>
+    </div>
   </div>
 <% end %>

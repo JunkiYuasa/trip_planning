@@ -1,10 +1,16 @@
-<h1>スケジュール</h1>
+<h1 class="m-4 text-center">スケジュール</h1>
 
 <script>
   let planData = <%= raw @plans.to_json %>;
 </script>
 
-<%= link_to "プラン作成", new_plan_path, data: { turbolinks: false } %>
-<%= link_to "プランジャンル", plan_genres_path %>
+<div class="d-flex justify-content-center">
+  <div class="btn m-3">
+    <%= link_to "プラン作成", new_plan_path, data: { turbolinks: false }, class: "btn btn-info" %>
+  </div>
+  <div class="btn m-3">
+    <%= link_to "プランジャンル", plan_genres_path, class: "btn btn-secondary" %>
+  </div>
+</div>
 
-<div id="calendar"></div>
+<div class="mx-auto mb-4" id="calendar"></div>

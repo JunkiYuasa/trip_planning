@@ -1,50 +1,69 @@
-<h1>プラン作成</h1>
-
+<h1 class="mt-4 text-center">プラン作成</h1>
 <%= render 'layouts/error_messages', model: @plan %>
+<div class="btn mb-4">
+  <%= link_to "プランジャンルを確認する", plan_genres_path, class: "btn btn-secondary" %>
+</div>
 
-<%= form_with model: @plan, local: true do |f| %>
-  <div class="field">
-    <%= f.label :name, "プラン名" %>
-    <%= f.text_field :name, value: @plan.name %>
+<%= form_with model: @plan, local: true, class: 'form-horizontal' do |f| %>
+  <div class="form-group m-3">
+    <h4>プラン名</h4>
+    <div class="field">
+      <%= f.text_field :name, value: @plan.name, class: 'form-control' %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :start_time, "開始時間" %>
-    <%= f.text_field :start_time, class: 'datepicker' %>
+  <div class="form-group m-3">
+    <h4>開始時間</h4>
+    <div class="field">
+      <%= f.text_field :start_time, class: 'form-control datepicker' %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :end_time, "終了時間" %>
-    <%= f.text_field :end_time, class: 'datepicker' %>
+  <div class="form-group m-3">
+    <h4>終了時間</h4>
+    <div class="field">
+      <%= f.text_field :end_time, class: 'form-control datepicker' %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :plan_genre_id, "プランジャンル" %>
-    <%= f.collection_select :plan_genre_id, @plan_genres, :id, :name, selected: @plan.plan_genre_id %>
+  <div class="form-group m-3">
+    <h4>プランジャンル</h4>
+    <div class="field">
+      <%= f.collection_select :plan_genre_id, @plan_genres, :id, :name, { selected: @plan.plan_genre_id }, { class: 'form-control' } %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :address, "住所" %>
-    <%= f.text_field :address, value: @plan.address %>
+  <div class="form-group m-3">
+    <h4>住所</h4>
+    <div class="field">
+      <%= f.text_field :address, value: @plan.address, class: 'form-control' %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :remark, "備考" %>
-    <%= f.text_area :remark %>
+  <div class="form-group m-3">
+    <h4>備考</h4>
+    <div class="field">
+      <%= f.text_area :remark, class: 'form-control' %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :post_url, "投稿URL" %>
-    <%= f.text_field :post_url, value: @plan.post_url %>
+  <div class="form-group m-3">
+    <h4>投稿URL</h4>
+    <div class="field">
+      <%= f.text_field :post_url, value: @plan.post_url, class: 'form-control' %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :site_url, "サイトURL" %>
-    <%= f.text_field :site_url, value: @plan.site_url %>
+  <div class="form-group m-3">
+    <h4>サイトURL</h4>
+    <div class="field">
+      <%= f.text_field :site_url, value: @plan.site_url, class: 'form-control' %>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= f.submit "作成" %>
+  <div class="form-group my-4">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit "作成", class: 'btn btn-primary' %>
+    </div>
   </div>
 <% end %>
-

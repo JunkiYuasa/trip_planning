@@ -1,12 +1,14 @@
+<h1 class="m-4 text-center">すべての投稿</h1>
+<!--管理者にはフォロー、いいねの機能がないためすべての投稿のみ表示-->
 <% if user_signed_in? %>
-  <div class="d-flex">
-    <div class="p-1 mx-3"><%= link_to "すべて", posts_path %></div>
-    <div class="p-1 mx-3"><%= link_to "フォロー中", followings_posts_path %></div>
-    <div class="p-1 mx-3"><%= link_to "いいね", favorite_posts_path %></div>
+  <div class="d-flex justify-content-center">
+    <div class="mx-3 font-weight-bold">すべて</div>
+    /
+    <div class="link mx-3 font-weight-bold"><%= link_to "フォロー中", followings_posts_path %></div>
+    /
+    <div class="link mx-3 font-weight-bold"><%= link_to "いいね", favorite_posts_path %></div>
   </div>
 <% end %>
-
-<h1>すべての投稿</h1>
-<div class="favorite_btn">
+<div class="py-3">
   <%= render "index", posts: @posts %>
 </div>

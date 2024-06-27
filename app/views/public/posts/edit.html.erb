@@ -1,92 +1,114 @@
-<h1 class="my-4">投稿編集</h1>
+<h1 class="m-4 text-center">投稿編集</h1>
+<%= render 'layouts/error_messages', model: @post %>
 
-<%= form_with model: @post do |f| %>
+<%= form_with model: @post, local: true, class: 'form-horizontal' do |f| %>
+
+  <%= f.hidden_field :purpose_id, value: @purpose.id %>
 
   <div class="m-3" id="image-fields">
-    <h4>画像</h4>
-    <div class="field my-2">
-      <%= f.file_field :images, multiple: true, direct_upload: true, class: 'image-upload-field' %>
+    <div class="py-2 images">
+      <strong class="image-change d-flex align-items-center">
+        <i class="toggle-icon fas fa-chevron-right"></i>
+        <h4 class="mx-2">画像の変更</h4>
+      </strong>
     </div>
-    <button type="button" id="add-image-field">追加</button>
-    <div id="image-preview-container"></div>
+    <div class="image-form" style="display: none;">
+      <div class="my-3" id="image-fields">
+        <%= f.file_field :images, multiple: true, direct_upload: true %>
+        <div class="image-preview"></div>
+      </div>
+      <div>
+        <button type="button" id="add-image-field" class="btn btn-secondary">追加</button>
+      </div>
+    </div>
   </div>
 
-  <div class="m-3">
+  <div class="form-group m-3">
     <h4>カテゴリー</h4>
     <div class="field d-flex">
       <%= f.collection_radio_buttons :category_id, @categories, :id, :name do |category| %>
-        <div class="mx-3">
-          <%= category.radio_button %>
-          <%= category.label %>
+        <div class="mx-3 form-check form-check-inline">
+          <%= category.radio_button class: 'form-check-input' %>
+          <%= category.label class: 'form-check-label' %>
         </div>
       <% end %>
     </div>
   </div>
 
-  <div class="m-3">
+  <div class="form-group m-3">
     <h4>投稿タイトル(必須)</h4>
     <div class="field">
-      <%= f.text_field :title %>
+      <%= f.text_field :title, class: 'form-control' %>
     </div>
   </div>
 
-
-
-  <div class="m-3">
+  <div class="form-group m-3">
     <h4>施設名(必須)</h4>
     <div class="field">
-      <%= f.text_field :name %>
+      <%= f.text_field :name, class: 'form-control' %>
     </div>
   </div>
 
-  <div class="m-3">
+  <div class="form-group m-3">
     <h4>本文</h4>
     <div class="field">
-      <%= f.text_area :introduction %>
+      <%= f.text_area :introduction, class: 'form-control' %>
     </div>
   </div>
 
-  <div class="m-3">
+  <div class="form-group m-3">
     <h4>住所</h4>
     <div class="field">
-      <%= f.text_field :address %>
+      <%= f.text_field :address, class: 'form-control' %>
     </div>
   </div>
 
-  <div class="m-3">
-    <h4>総額</h4>
-    <div class="field">
-      <%= f.text_field :min_fee, placeholder: "最低額" %>円～<br>
-      <%= f.text_field :max_fee, placeholder: "最高額" %>円
-    </div>
+<div class="form-group m-3">
+  <h4>総額</h4>
+  <div class="field form-inline">
+    <%= f.number_field :min_fee, placeholder: "最低額", class: 'form-control mr-2' %>
+    <span>円～</span>
+    <%= f.number_field :max_fee, placeholder: "最高額", class: 'form-control mx-2' %>
+    <span>円</span>
   </div>
+</div>
 
-  <div class="m-3">
+  <div class="form-group m-3">
     <h4>特徴（複数選択可）</h4>
-    <% @feature_genres.each do |feature_genre| %>
-      <div class="mb-2">
-        <div class="m-1"><%= feature_genre.name %></div>
-        <div class="field">
-          <% feature_genre.features.each do |feature| %>
-            <% if feature.purposes.pluck(:id).include?(@purpose.id) %>
-              <%= check_box_tag "post[feature_ids][]", feature.id, @post.feature_ids.include?(feature.id) %>
-              <%= feature.name %><br>
-            <% end %>
-          <% end %>
+    <div>
+      <% @feature_genres.each do |feature_genre| %>
+        <div class="py-2 d-flex align-items-center feature-genre">
+          <strong class="feature-genre-name">
+            <i class="toggle-icon fas fa-chevron-right"></i>
+            <%= feature_genre.name %>
+          </strong>
         </div>
-      </div>
-    <% end %>
+        <div class="features" style="display: none;">
+          <div class="d-flex flex-wrap">
+            <% feature_genre.features.each do |feature| %>
+              <% if feature.purposes.pluck(:id).include?(@purpose.id) %>
+                <div class="m-2 form-check form-check-inline">
+                  <%= check_box_tag "post[feature_ids][]", feature.id, false, id: "feature_#{feature.id}", class: 'form-check-input' %>
+                  <%= feature.name %><br>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
 
-  <div class="m-3">
+  <div class="form-group m-3">
     <h4>サイトURL</h4>
     <div class="field">
-      <%= f.text_field :site_url %>
+      <%= f.text_field :site_url, class: 'form-control' %>
     </div>
   </div>
 
-  <div class="my-4">
-    <%= f.submit "変更" %>
+  <div class="form-group my-4">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit "投稿", class: 'btn btn-success' %>
+    </div>
   </div>
 <% end %>
-

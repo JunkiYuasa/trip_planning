@@ -1,5 +1,5 @@
   <% if user.image.attached? %>
-    <%= image_tag user.image, size: size%>
+    <%= image_tag user.image, class: image_class %>
   <% else %>
-    <%= image_tag "person.png", size: size %>
+    <%= image_tag "person.png", class: image_class %>
   <% end %>

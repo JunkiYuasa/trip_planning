@@ -13,7 +13,7 @@ Purpose.create!(name: "食事")
 Purpose.create!(name: "観光")
 Purpose.create!(name: "宿泊")
 
-# default: trueにすることで編集と削除を出来ないようにする
+# standard: trueのものは編集と削除を出来ないようにする
 PlanGenre.create!(user_id: admin_user.id, name: "未分類", color: "#000000", standard: true) # 黒
 PlanGenre.create!(user_id: admin_user.id, name: '食事', color: '#FFA500', standard: true)   # オレンジ
 PlanGenre.create!(user_id: admin_user.id, name: '観光', color: '#FFFF00', standard: true)   # 黄色

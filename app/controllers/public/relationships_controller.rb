@@ -1,4 +1,6 @@
 class Public::RelationshipsController < ApplicationController
+  before_action :authenticate_user_or_admin!
+
   def create
     @user = User.find(params[:user_id])
     current_user.follow(@user)

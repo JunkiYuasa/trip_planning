@@ -1,26 +1,30 @@
-<h1 class="my-4">カテゴリー作成</h1>
-<%= form_with model: @category, url: admin_categories_path do |f| %>
-  
-  <!--目的の選択-->
-  <div class="m-3">
-    <h4>目的</h4>
-    <div class="field d-flex">
-      <%= f.collection_radio_buttons :purpose_id, @purposes, :id, :name do |purpose| %>
-        <div class="mx-3">
-          <%= purpose.radio_button %>
-          <%= purpose.label %>
-        </div>
-      <% end %>
-    </div>
-  </div>
-  
-  <div class="m-3">
-    <h4>カテゴリー名</h4>
-    <%= f.text_field :name %>
-  </div>
-  
-  <div class="my-4">
-    <%= f.submit "作成" %>
-  </div>
+<div class="w-50 mx-auto">
+  <h1 class="my-4 text-center">カテゴリー作成</h1>
+  <%= render 'layouts/error_messages', model: @category %>
 
-<% end %>
+  <%= form_with model: @category, url: admin_categories_path do |f| %>
+
+    <div class="form-group m-3">
+      <h4>目的</h4>
+      <div class="field d-flex flex-wrap">
+        <%= f.collection_radio_buttons :purpose_id, @purposes, :id, :name do |purpose| %>
+          <div class="mx-3 form-check form-check-inline">
+            <%= purpose.radio_button class: "form-check-input" %>
+            <%= purpose.label class: "form-check-label" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="form-group m-3">
+      <h4>カテゴリー名</h4>
+      <div class="field">
+        <%= f.text_field :name, class: "form-control"  %>
+      </div>
+    </div>
+
+    <div class="form-group mx-3 my-4">
+      <%= f.submit "作成", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
