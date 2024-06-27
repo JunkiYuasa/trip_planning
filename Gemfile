@@ -67,4 +67,5 @@ end
 gem "net-smtp"
 gem "net-pop"
 gem "net-imap"
-gem 'uglifier'
+gem 'uglifier', '>= 1.3.0'
+gem 'execjs'
