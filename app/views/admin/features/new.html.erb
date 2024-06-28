@@ -1,5 +1,6 @@
+<div class="btn"><%= link_to '戻る', "javascript:history.back()", class: "btn btn-secondary", data: { turbolinks: false } %></div>
 <div class="w-75 mx-auto">
-  <h1 class="my-4 text-center">特徴作成</h1>
+  <h1 class="mb-4 text-center">特徴作成</h1>
   <%= render 'layouts/error_messages', model: @feature %>
 
   <%= form_with model: @feature, url: admin_features_path do |f| %>

@@ -1,7 +1,12 @@
-<div class="w-50 mx-auto">
-  <div class="btn mb-2 d-flex justify-content-end">
-    <%= link_to "削除", admin_feature_genre_path(@feature_genre), method: :delete, data: { confirm: "本当に削除しますか？" } , class: "btn btn-danger" %>
+<div class="row">
+  <div class="btn col d-flex align-items-center">
+    <%= link_to '戻る', "javascript:history.back()", class: "btn btn-secondary", data: { turbolinks: false } %>
   </div>
+  <div class="btn col d-flex justify-content-end align-items-center">
+    <%= link_to "削除", admin_feature_genre_path(@feature_genre), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
+  </div>
+</div>
+<div class="w-50 mx-auto">
   <h1 class="mb-4 text-center">特徴ジャンル編集</h1>
   <%= render 'layouts/error_messages', model: @feature_genre %>
 

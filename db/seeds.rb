@@ -30,11 +30,11 @@ FeatureGenre.find_or_create_by!(name: "サービス")
 FeatureGenre.find_or_create_by!(name: "シチュエーション")
 
 Feature.find_or_create_by!(name: "駅から徒歩5分以内") do |feature|
-  feature.feature_genre_id = FeatureGenre.find_by(name: 'シチュエーション').id
+  feature.feature_genre_id = FeatureGenre.find_by(name: 'アクセス').id
   feature.purpose_ids = Purpose.where(name: ['食事', '観光', '宿泊']).pluck(:id)
 end
 Feature.find_or_create_by!(name: "駅から徒歩10分以内") do |feature|
-  feature.feature_genre_id = FeatureGenre.find_by(name: 'シチュエーション').id
+  feature.feature_genre_id = FeatureGenre.find_by(name: 'アクセス').id
   feature.purpose_ids = Purpose.where(name: ['食事', '観光', '宿泊']).pluck(:id)
 end
 Feature.find_or_create_by!(name: "初回割引") do |feature|

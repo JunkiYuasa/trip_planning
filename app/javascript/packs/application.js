@@ -28,6 +28,12 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
+$(document).ready(function() {
+  $('#reloadBack').click(function() {
+    window.location.href = document.referrer;
+  });
+});
+
 // 特徴表示
 $(document).ready(function() {
   $('.feature-genre-name').on('click', function() {

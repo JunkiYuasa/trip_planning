@@ -1,5 +1,6 @@
+<div class="btn"><%= link_to '戻る', "javascript:history.back()", class: "btn btn-secondary", data: { turbolinks: false } %></div>
 <div class="w-50 mx-auto">
-  <h1 class="my-4 text-center">カテゴリー作成</h1>
+  <h1 class="mb-4 text-center">カテゴリー作成</h1>
   <%= render 'layouts/error_messages', model: @category %>
 
   <%= form_with model: @category, url: admin_categories_path do |f| %>

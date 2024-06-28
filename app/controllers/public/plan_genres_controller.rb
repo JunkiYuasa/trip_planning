@@ -34,9 +34,9 @@ class Public::PlanGenresController < ApplicationController
       redirect_to plans_path
     end
     @plan_genre = PlanGenre.find(params[:id])
-    if @plan.update(plan_genre_params)
+    if @plan_genre.update(plan_genre_params)
       flash[:notice] = "プランジャンルを変更しました"
-      redirect_to plan_path(@plan)
+      redirect_to plan_genres_path
     else
       render :edit
     end
