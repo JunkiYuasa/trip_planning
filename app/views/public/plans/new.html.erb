@@ -1,26 +1,24 @@
-<h1 class="mt-4 text-center">プラン作成</h1>
+<div class="btn"><%= link_to '戻る', "javascript:history.back()", class: "btn btn-secondary", data: { turbolinks: false } %></div>
+<h1 class="mb-4 text-center">プラン作成</h1>
 <%= render 'layouts/error_messages', model: @plan %>
-<div class="btn mb-4">
-  <%= link_to "プランジャンルを確認する", plan_genres_path, class: "btn btn-secondary" %>
-</div>
 
 <%= form_with model: @plan, local: true, class: 'form-horizontal' do |f| %>
   <div class="form-group m-3">
-    <h4>プラン名</h4>
+    <h4>プラン名(必須)</h4>
     <div class="field">
       <%= f.text_field :name, value: @plan.name, class: 'form-control' %>
     </div>
   </div>
 
   <div class="form-group m-3">
-    <h4>開始時間</h4>
+    <h4>開始時間(必須)</h4>
     <div class="field">
       <%= f.text_field :start_time, class: 'form-control datepicker' %>
     </div>
   </div>
 
   <div class="form-group m-3">
-    <h4>終了時間</h4>
+    <h4>終了時間(必須)</h4>
     <div class="field">
       <%= f.text_field :end_time, class: 'form-control datepicker' %>
     </div>

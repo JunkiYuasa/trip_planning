@@ -1,4 +1,5 @@
-<div class="p-4 border w-100">
+<div class="btn"><%= link_to '戻る', "javascript:history.back()", class: "btn btn-secondary", data: { turbolinks: false } %></div>
+<div class="p-4 mt-3 border w-100">
   <div class="d-flex align-items-center position-relative">
     <div class="link font-weight-bold">
       <%= link_to user_path(@post.user) do %>

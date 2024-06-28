@@ -18,12 +18,13 @@ class Public::SearchesController < ApplicationController
   end
 
   def result
-    purpose_id = params[:purpose_id].to_i
-    @posts = Post.where(purpose_id: purpose_id)
+    @purpose = Purpose.find(params[:purpose_id])
+    @purpose_id = params[:purpose_id].to_i
+    @posts = Post.where(purpose_id: @purpose_id)
 
     # 表示する検索条件のデフォルト
     @conditions = {
-      purpose: Purpose.find(params[:purpose_id]).name,
+      purpose: @purpose.name,
       category_ids: "なし",
       name: "なし",
       address: "なし",
@@ -56,7 +57,7 @@ class Public::SearchesController < ApplicationController
       @posts = @posts.where("min_fee<=?", under)
       @conditions[:under] = "#{under}円"
     end
-    if params[:post][:feature_ids].present?
+    if params[:post].present?
       feature_ids = params[:post][:feature_ids].map(&:to_i)
       @posts = @posts.joins(:features).where(features: { id: feature_ids })
                      .group('posts.id')
