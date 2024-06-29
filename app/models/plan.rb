@@ -9,7 +9,7 @@ class Plan < ApplicationRecord
   validates :start_time, presence: true
   validates :end_time, presence: true
 
-
+# プランジャンルの色を取得
   def color
     plan_genre.color
   end

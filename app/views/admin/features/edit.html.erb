@@ -17,6 +17,7 @@
       <div class="d-flex flex-wrap">
         <% @purposes.each do |purpose| %>
           <div class="m-2 form-check form-check-inline">
+            <!--選択されていた特徴にはチェックを入れる-->
             <%= check_box_tag "feature[purpose_ids][]", purpose.id, @feature.purpose_ids.include?(purpose.id), class: 'form-check-input' %>
             <%= purpose.name %><br>
           </div>

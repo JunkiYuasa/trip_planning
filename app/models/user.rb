@@ -23,7 +23,7 @@ class User < ApplicationRecord
   has_one_attached :image
 
   validates :name, presence: true, length: { minimum: 2, maximum: 20 }
-  validates :introduction, length: { maximum: 100 }
+  validates :introduction, length: { maximum: 200 }
 
   # 指定したユーザーをフォローする
   def follow(user)

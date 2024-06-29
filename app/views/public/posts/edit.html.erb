@@ -89,7 +89,8 @@
             <% feature_genre.features.each do |feature| %>
               <% if feature.purposes.pluck(:id).include?(@purpose.id) %>
                 <div class="m-2 form-check form-check-inline">
-                  <%= check_box_tag "post[feature_ids][]", feature.id, false, id: "feature_#{feature.id}", class: 'form-check-input' %>
+                  <!--選択されていた特徴にはチェックを入れる-->
+                  <%= check_box_tag "post[feature_ids][]", feature.id, @post.feature_ids.include?(feature.id), class: 'form-check-input' %>
                   <%= feature.name %><br>
                 </div>
               <% end %>
