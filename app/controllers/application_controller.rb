@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  # 管理者はnewとcreateメソッドは実行できないが、どのユーザーのupdateやdestroyメソッドも実行できる
   def authenticate_user_or_admin!
     if action_name == 'new' || action_name == 'create'
       unless user_signed_in?

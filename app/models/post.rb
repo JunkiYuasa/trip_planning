@@ -19,6 +19,7 @@ class Post < ApplicationRecord
   validates :introduction, length: { maximum: 400 }
   validates :address, length: { maximum: 60 }
 
+# ユーザーがその投稿に対していいねをしているか
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
