@@ -9,9 +9,7 @@ class Public::PostsController < ApplicationController
     if params[:purpose_id].present?
       @post = Post.new
       @purpose = Purpose.find(params[:purpose_id])
-      @categories = @purpose.categories
-      @feature_genres = FeatureGenre.all
-      @features = @purpose.features  #subjectで選択した目的idを持つ特徴を表示
+      set_attributes_data
     else
       flash[:alert] = "目的を選択してください"
       redirect_to subject_posts_path
@@ -21,16 +19,40 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    if @post.save
-      flash[:notice] = "投稿しました"
-      redirect_to post_path(@post)
-    else
-      @purpose = Purpose.find(params[:post][:purpose_id])
-      @categories = @purpose.categories
-      @feature_genres = FeatureGenre.all
-      @features = @purpose.features
-      render :new
-    end
+      if @post.save
+        @post.images.each_with_index do |image, index|
+          # 一時ファイルを作成し、画像データを書き込む
+          tempfile = Tempfile.new(["image_#{index}", image.filename.extension_with_delimiter])
+          tempfile.binmode
+          tempfile.write(image.blob.download)
+          tempfile.rewind
+          # ActionDispatch::Http::UploadedFileオブジェクトを作成
+          uploaded_file = ActionDispatch::Http::UploadedFile.new(
+            tempfile: tempfile,
+            filename: image.filename.to_s,
+            type: image.content_type,
+            head: nil
+          )
+          # Vision APIを使用して画像からタグを取得
+          tags = Vision.get_image_data(uploaded_file)
+          tags.each do |tag|
+            # タグを作成
+            created_tag = Tag.find_or_create_by(name: tag)
+            # タグと画像の関連を作成
+            PostTag.create(post_id: @post.id, tag_id: created_tag.id, image_key: image.blob.key)
+          end
+          # 一時ファイルを閉じて消去
+          tempfile.close
+          tempfile.unlink
+        end
+        flash[:notice] = "投稿しました"
+        redirect_to post_path(@post)
+      else
+        @purpose = Purpose.find(params[:post][:purpose_id])
+        set_attributes_data
+        render :new
+      end
+
   end
 
   def index
@@ -39,10 +61,13 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @image_tags = @post.images.each_with_object({}) do |image, hash|
+      hash[image.blob.key] = Tag.joins(:post_tags).where(post_tags: { image_key: image.blob.key })
+    end
     @comment = Comment.new
     @comments = @post.comments.order(created_at: :desc).page(params[:page]).per(50)
 
-  #指定の投稿が見つからなかった場合、下記の例外処理を行う
+  #指定の投稿が見つからなかった場合、下記の例外処理を行う(主にスケジュールのプランから削除されているリンクに飛んだ場合)
   rescue ActiveRecord::RecordNotFound
     redirect_to not_exist_posts_path
   end
@@ -56,8 +81,7 @@ class Public::PostsController < ApplicationController
     end
     @post = Post.find(params[:id])
     @purpose = @post.purpose
-    @categories = @purpose.categories
-    @feature_genres = FeatureGenre.all
+    set_attributes_data
   end
 
   def update
@@ -73,9 +97,7 @@ class Public::PostsController < ApplicationController
       redirect_to post_path(@post)
     else
       @purpose = Purpose.find(params[:post][:purpose_id])
-      @categories = @purpose.categories
-      @feature_genres = FeatureGenre.all
-      @features = @purpose.features
+      set_attributes_data
       render :edit
     end
   end
@@ -94,6 +116,12 @@ class Public::PostsController < ApplicationController
   end
 
   private
+
+  def set_attributes_data
+    @categories = @purpose.categories
+    @feature_genres = FeatureGenre.all
+    @features = @purpose.features
+  end
 
   def post_params
     params.require(:post).permit(:purpose_id, :category_id, :title, :name, :introduction, :address, :min_fee, :max_fee, :site_url, feature_ids: [], images: [])
