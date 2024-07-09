@@ -35,33 +35,38 @@ class Public::SearchesController < ApplicationController
 
     # 検索条件が入力されていた場合、それぞれ絞り込みを適応させ、@conditionsの値を変更する
     if params[:category_ids].present?
+      # 選択されたカテゴリーのいずれかを持つ投稿を表示
       category_ids = params[:category_ids].map(&:to_i)
       @posts = @posts.where(category_id: category_ids)
       @conditions[:category_ids] = Category.where(id: category_ids).pluck(:name).join(", ")
     end
     if params[:name].present?
+      # 施設名にnameが含まれる投稿を表示
       @posts = @posts.where('posts.name LIKE ?', "%#{params[:name]}%")
       @conditions[:name] = params[:name]
     end
     if params[:address].present?
+      # 住所にaddressが含まれる投稿を表示
       @posts = @posts.where('address LIKE ?', "%#{params[:address]}%")
       @conditions[:address] = params[:address]
     end
     if params[:over].present?
+      # 最高金額がoverよりも高い投稿を表示  
       over = params[:over].to_i
       @posts = @posts.where("max_fee>=?", over)
       @conditions[:over] = "#{over}円"
     end
+    
     if params[:under].present?
+      # 最低金額がunderよりも低い投稿を表示
       under = params[:under].to_i
       @posts = @posts.where("min_fee<=?", under)
       @conditions[:under] = "#{under}円"
     end
     if params[:post].present?
+      # 選択された特徴をすべて含む投稿を表示
       feature_ids = params[:post][:feature_ids].map(&:to_i)
-      @posts = @posts.joins(:features).where(features: { id: feature_ids })
-                     .group('posts.id')
-                     .having('COUNT(features.id) = ?', feature_ids.count)
+      @posts = Post.where(id: @posts.select { |post| feature_ids.all? { |feature_id| post.features.ids.include?(feature_id) } }.map(&:id))
       @conditions[:feature_ids] = Feature.where(id: feature_ids).pluck(:name).join(", ")
     end
 
