@@ -61,7 +61,14 @@
           <div class="w-100 border<%= " slider" if @post.images.count >= 2 %>">
             <% @post.images.each do |image| %>
               <div class="show-image d-flex justify-content-center align-items-center">
-                <%= image_tag image, class: "show-image" %>
+                <div class="w-100">
+                  <div><%= image_tag image, class: "show-image" %></div>
+                  <div class="w-100 border bg-white d-flex justify-content-center align-items-center">
+                    <% @image_tags[image.blob.key].each do |tag| %>
+                      <div class="tag m-1"><%= tag.name %></div>
+                    <% end %>
+                  </div>
+                </div>
               </div>
             <% end %>
           </div>

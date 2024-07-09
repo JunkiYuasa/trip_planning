@@ -69,3 +69,4 @@ gem "net-pop"
 gem "net-imap"
 gem 'uglifier', '>= 1.3.0'
 gem 'execjs'
+gem 'dotenv-rails'
