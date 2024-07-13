@@ -1,5 +1,5 @@
 <div class="btn-wrapper w-50 mx-auto">
-  <h1 class="text-center m-4 font-weight-bold">「とりぷら！」へようこそ！</h1>
+  <h1 class="text-center m-4 font-weight-bold">ようこそ、「とりぷら」へ！</h1>
   <div class="text-light">
     <%= link_to "ゲストログイン（閲覧用）", users_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %>
   </div>
@@ -9,5 +9,6 @@
   <div class="text-light">
     <%= link_to "新規登録", new_user_registration_path, class: "btn btn-success btn-sm btn-block sign_up" %>
   </div>
-  <div class="link text-center m-4 font-weight-bold"><%= link_to "ABOUTページへ", about_path %></div>
+  <div class="link text-center mt-5 mb-3 font-weight-bold"><%= link_to "ABOUTページへ", about_path %></div>
+  <div class="link text-center font-weight-bold"><%= link_to "管理者ログイン", new_admin_session_path %></div>
 </div>
