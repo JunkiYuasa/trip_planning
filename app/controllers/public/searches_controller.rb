@@ -13,7 +13,7 @@ class Public::SearchesController < ApplicationController
       @features = @purpose.features
     else
       flash[:alert] = "目的を選択してください"
-      redirect_to subject_posts_path
+      redirect_to search_subject_path
     end
   end
 
@@ -51,12 +51,12 @@ class Public::SearchesController < ApplicationController
       @conditions[:address] = params[:address]
     end
     if params[:over].present?
-      # 最高金額がoverよりも高い投稿を表示  
+      # 最高金額がoverよりも高い投稿を表示
       over = params[:over].to_i
       @posts = @posts.where("max_fee>=?", over)
       @conditions[:over] = "#{over}円"
     end
-    
+
     if params[:under].present?
       # 最低金額がunderよりも低い投稿を表示
       under = params[:under].to_i
