@@ -38,7 +38,7 @@ Rails.application.routes.draw do
     get "/followings_posts", to: "relationships#followings_posts"
     get "/favorite_posts", to: "favorites#favorite_posts"
 
-    resources :plans, only: [:new, :show, :edit, :create, :update, :destroy]
+    resources :plans
     get '/plans', to: 'plans#index', defaults: { format: 'json' }
 
     resources :plan_genres, only: [:new, :index, :edit, :create, :update, :destroy]
